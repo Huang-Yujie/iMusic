@@ -24,15 +24,28 @@ class FirstView: UIView {
 //        self.addSubview(topButton)
         self.addSubview(topLabel)
         self.addSubview(topTable)
+        self.addSubview(topBar)
         
-        topLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        topLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
         topLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        topLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+        topLabel.topAnchor.constraint(equalTo: topBar.bottomAnchor, constant: 10).isActive = true
+        
+        topBar.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        topBar.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        topBar.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+        topBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     let topBar : UINavigationBar = {
         let bar = UINavigationBar()
         
+        let barButton = UIBarButtonItem()
+        barButton.title = "编辑"
+        
+        bar.isTranslucent = true
+        bar.topItem?.title = "资料库"
+        bar.topItem?.rightBarButtonItem = barButton
+        bar.translatesAutoresizingMaskIntoConstraints = false
         return bar
     }()
     let topButton : UIButton = {
