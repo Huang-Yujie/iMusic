@@ -8,6 +8,7 @@
 
 import UIKit
 
+let info = ["播放列表", "艺人", "专辑", "歌曲"]
 class FirstView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,7 +27,7 @@ class FirstView: UIView {
         self.addSubview(topTable)
         self.addSubview(topBar)
         
-        topLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
+        topLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15).isActive = true
         topLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         topLabel.topAnchor.constraint(equalTo: topBar.bottomAnchor, constant: 10).isActive = true
         
@@ -34,34 +35,34 @@ class FirstView: UIView {
         topBar.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         topBar.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         topBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        topTable.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        topTable.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        topTable.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 10).isActive = true
+        topTable.heightAnchor.constraint(equalToConstant: 240).isActive = true
+
     }
     
     let topBar : UINavigationBar = {
         let bar = UINavigationBar()
         let barButton = UIBarButtonItem()
         barButton.title = "编辑"
+        barButton.tintColor = UIColor.red
         bar.isTranslucent = false
-        let baritem = UINavigationItem(title: "资料库")
-        bar.items?.append(baritem)
+        let barItem = UINavigationItem(title: "资料库")
+        bar.items?.append(barItem)
         bar.topItem?.title = "资料库"
         bar.topItem?.rightBarButtonItem = barButton
         bar.translatesAutoresizingMaskIntoConstraints = false
         return bar
     }()
-//    let topButton : UIButton = {
-//        let button = UIButton(type: .system)
-//        button.setTitle("编辑", for: .normal)
-//        button.titleLabel?.font = UIFont.init(name: "PingFang-SC-Semibold", size: 18.3)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        return button
-//    }()
     
     let topLabel : UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
         label.text = "资料库"
         label.textAlignment = .left
-        label.font = UIFont.init(name: "PingFang-SC-Semibold", size: 30)
+        label.font = UIFont.init(name: "PingFang-SC-Semibold", size: 35)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -71,11 +72,7 @@ class FirstView: UIView {
         let table = UITableView(frame: CGRect(), style: .plain)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.register(CustomCell.self, forCellReuseIdentifier: "Cell")
-        table.allowsSelection = true
-        table.allowsMultipleSelection = false
-        table.rowHeight = 44
-//        table.sectionFooterHeight = 0
-//        table.sectionHeaderHeight = 19
+        table.rowHeight = 57
         return table
     }()
     

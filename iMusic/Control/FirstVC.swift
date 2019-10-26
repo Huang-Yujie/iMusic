@@ -14,7 +14,8 @@ class FirstVC: UIViewController {
         super.viewDidLoad()
         setupViews()
         mainView.topBar.delegate = self
-        
+        mainView.topTable.delegate = self
+        mainView.topTable.dataSource = self
         // Do any additional setup after loading the view.
     }
 
@@ -36,5 +37,20 @@ class FirstVC: UIViewController {
 extension FirstVC: UINavigationBarDelegate {
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
+    }
+}
+
+extension FirstVC : UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return info.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomCell
+        cell = CustomCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "Cell")
+        if let label = cell.textLabel {
+            label.text = "\(info[indexPath.row])"
+        }
+        return cell
     }
 }

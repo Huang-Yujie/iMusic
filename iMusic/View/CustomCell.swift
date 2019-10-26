@@ -10,17 +10,16 @@ import UIKit
 
 class CustomCell: UITableViewCell {
 
-    var arrowImage: UIImageView!
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-        arrowImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 12).isActive = true
-        arrowImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        arrowImage.image = UIImage(named: "baseline_keyboard_arrow_right_black_18dp")
-        self.contentView.addSubview(arrowImage)
+        self.accessoryType = .disclosureIndicator
+        self.selectionStyle = .default
+        self.textLabel?.textColor = .red
+        self.selectedBackgroundView = UIView(frame: self.frame)
+        self.selectedBackgroundView?.backgroundColor = .red
+        self.textLabel?.highlightedTextColor = .white
+        self.textLabel?.font = UIFont(name: "PingFang-SC-Light", size: 23)
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

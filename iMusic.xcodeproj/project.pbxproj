@@ -62,9 +62,9 @@
 		B6CCE4A823644DF6000CB030 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				B6CCE4A023644DAF000CB030 /* Playlists.swift */,
 				B6CCE4A223644DC3000CB030 /* Artists.swift */,
 				B6CCE4A423644DD4000CB030 /* Albums.swift */,
-				B6CCE4A023644DAF000CB030 /* Playlists.swift */,
 				B6CCE4A623644DE9000CB030 /* Songs.swift */,
 			);
 			path = SubViews;
