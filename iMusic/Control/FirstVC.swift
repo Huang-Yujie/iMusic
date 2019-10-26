@@ -8,25 +8,33 @@
 
 import UIKit
 
-//class FirstVC: UIViewController {
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        setupViews()
-//        // Do any additional setup after loading the view.
-//    }
-//
-//    let mainView = FirstView()
-//
-//    private func setupViews(){
-//
-//        view.addSubview(mainView)
-//
-//        mainView.translatesAutoresizingMaskIntoConstraints = false
-//        mainView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-//        mainView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-//        mainView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-//        mainView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-//
-//    }
-//}
+class FirstVC: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+        mainView.topBar.delegate = self
+        
+        // Do any additional setup after loading the view.
+    }
+
+    let mainView = FirstView()
+    
+    private func setupViews(){
+
+        view.addSubview(mainView)
+
+        mainView.translatesAutoresizingMaskIntoConstraints = false
+        mainView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        mainView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        mainView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        mainView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+
+    }
+}
+
+extension FirstVC: UINavigationBarDelegate {
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
+    }
+}

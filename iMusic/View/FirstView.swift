@@ -38,23 +38,23 @@ class FirstView: UIView {
     
     let topBar : UINavigationBar = {
         let bar = UINavigationBar()
-        
         let barButton = UIBarButtonItem()
         barButton.title = "编辑"
-        
-        bar.isTranslucent = true
+        bar.isTranslucent = false
+        let baritem = UINavigationItem(title: "资料库")
+        bar.items?.append(baritem)
         bar.topItem?.title = "资料库"
         bar.topItem?.rightBarButtonItem = barButton
         bar.translatesAutoresizingMaskIntoConstraints = false
         return bar
     }()
-    let topButton : UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("编辑", for: .normal)
-        button.titleLabel?.font = UIFont.init(name: "PingFang-SC-Semibold", size: 18.3)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+//    let topButton : UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setTitle("编辑", for: .normal)
+//        button.titleLabel?.font = UIFont.init(name: "PingFang-SC-Semibold", size: 18.3)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        return button
+//    }()
     
     let topLabel : UILabel = {
         let label = UILabel()

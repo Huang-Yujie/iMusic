@@ -14,6 +14,10 @@
 		B6B4BC6923619A94003A6AF4 /* SecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B4BC6423619A94003A6AF4 /* SecondVC.swift */; };
 		B6B4BC6A23619A94003A6AF4 /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B4BC6523619A94003A6AF4 /* FirstVC.swift */; };
 		B6B4BC6B23619A94003A6AF4 /* ThirdVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B4BC6623619A94003A6AF4 /* ThirdVC.swift */; };
+		B6CCE4A123644DAF000CB030 /* Playlists.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CCE4A023644DAF000CB030 /* Playlists.swift */; };
+		B6CCE4A323644DC3000CB030 /* Artists.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CCE4A223644DC3000CB030 /* Artists.swift */; };
+		B6CCE4A523644DD4000CB030 /* Albums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CCE4A423644DD4000CB030 /* Albums.swift */; };
+		B6CCE4A723644DE9000CB030 /* Songs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CCE4A623644DE9000CB030 /* Songs.swift */; };
 		B6E5BCCC235D5DF900571E49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E5BCCB235D5DF900571E49 /* AppDelegate.swift */; };
 		B6E5BCCE235D5DF900571E49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E5BCCD235D5DF900571E49 /* SceneDelegate.swift */; };
 		B6E5BCD0235D5DF900571E49 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E5BCCF235D5DF900571E49 /* ViewController.swift */; };
@@ -30,6 +34,10 @@
 		B6B4BC6423619A94003A6AF4 /* SecondVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondVC.swift; sourceTree = "<group>"; };
 		B6B4BC6523619A94003A6AF4 /* FirstVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
 		B6B4BC6623619A94003A6AF4 /* ThirdVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdVC.swift; sourceTree = "<group>"; };
+		B6CCE4A023644DAF000CB030 /* Playlists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlists.swift; sourceTree = "<group>"; };
+		B6CCE4A223644DC3000CB030 /* Artists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artists.swift; sourceTree = "<group>"; };
+		B6CCE4A423644DD4000CB030 /* Albums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Albums.swift; sourceTree = "<group>"; };
+		B6CCE4A623644DE9000CB030 /* Songs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Songs.swift; sourceTree = "<group>"; };
 		B6E5BCC8235D5DF900571E49 /* iMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E5BCCB235D5DF900571E49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6E5BCCD235D5DF900571E49 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +59,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B6CCE4A823644DF6000CB030 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				B6CCE4A223644DC3000CB030 /* Artists.swift */,
+				B6CCE4A423644DD4000CB030 /* Albums.swift */,
+				B6CCE4A023644DAF000CB030 /* Playlists.swift */,
+				B6CCE4A623644DE9000CB030 /* Songs.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		B6E5BCBF235D5DF900571E49 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +116,7 @@
 			children = (
 				B6B4BC53236199BD003A6AF4 /* CustomCell.swift */,
 				B6B4BC52236199BD003A6AF4 /* FirstView.swift */,
+				B6CCE4A823644DF6000CB030 /* SubViews */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -193,11 +213,15 @@
 			files = (
 				B6E5BCD0235D5DF900571E49 /* ViewController.swift in Sources */,
 				B6B4BC54236199BD003A6AF4 /* FirstView.swift in Sources */,
+				B6CCE4A323644DC3000CB030 /* Artists.swift in Sources */,
 				B6B4BC6823619A94003A6AF4 /* FifthVC.swift in Sources */,
 				B6B4BC6A23619A94003A6AF4 /* FirstVC.swift in Sources */,
+				B6CCE4A523644DD4000CB030 /* Albums.swift in Sources */,
 				B6B4BC6923619A94003A6AF4 /* SecondVC.swift in Sources */,
 				B6B4BC6B23619A94003A6AF4 /* ThirdVC.swift in Sources */,
 				B6E5BCCC235D5DF900571E49 /* AppDelegate.swift in Sources */,
+				B6CCE4A123644DAF000CB030 /* Playlists.swift in Sources */,
+				B6CCE4A723644DE9000CB030 /* Songs.swift in Sources */,
 				B6B4BC55236199BD003A6AF4 /* CustomCell.swift in Sources */,
 				B6B4BC6723619A94003A6AF4 /* FourthVC.swift in Sources */,
 				B6E5BCCE235D5DF900571E49 /* SceneDelegate.swift in Sources */,
