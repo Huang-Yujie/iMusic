@@ -26,6 +26,7 @@ class FirstView: UIView {
         self.addSubview(topLabel)
         self.addSubview(topTable)
         self.addSubview(topBar)
+        self.addSubview(collection)
         
         topLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15).isActive = true
         topLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
@@ -41,6 +42,10 @@ class FirstView: UIView {
         topTable.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 10).isActive = true
         topTable.heightAnchor.constraint(equalToConstant: 240).isActive = true
 
+        collection.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        collection.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        collection.topAnchor.constraint(equalTo: topTable.bottomAnchor).isActive = true
+        collection.heightAnchor.constraint(equalToConstant: 300).isActive = true
     }
     
     let topBar : UINavigationBar = {
@@ -71,9 +76,22 @@ class FirstView: UIView {
     let topTable : UITableView = {
         let table = UITableView(frame: CGRect(), style: .plain)
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.register(CustomCell.self, forCellReuseIdentifier: "Cell")
+        table.register(CustomTableCell.self, forCellReuseIdentifier: "Cell")
         table.rowHeight = 57
         return table
     }()
     
+    let collection :UICollectionView = {
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 160, height: 200)
+        layout.minimumLineSpacing = 30
+        layout.minimumInteritemSpacing = 50
+        
+        let collection = UICollectionView()
+        collection.collectionViewLayout = layout
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.register(CustomCollectionCell.self, forCellWithReuseIdentifier: "Cell")
+        return collection
+    }()
 }

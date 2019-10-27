@@ -13,23 +13,32 @@ class FirstVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        mainView.topBar.delegate = self
-        mainView.topTable.delegate = self
-        mainView.topTable.dataSource = self
-        // Do any additional setup after loading the view.
+        
+        firstView.topBar.delegate = self
+        
+        firstView.topTable.delegate = self
+        firstView.topTable.dataSource = self
+        
+        firstView.collection.delegate = self
+        firstView.collection.dataSource = self
+//        let layout = UICollectionViewFlowLayout()
+//        layout.itemSize = CGSize(width: 160, height: 200)
+//        layout.minimumLineSpacing = 30
+//        layout.minimumInteritemSpacing = 50
+//        firstView.collection.collectionViewLayout = layout
     }
 
-    let mainView = FirstView()
+    let firstView = FirstView()
     
     private func setupViews(){
 
-        view.addSubview(mainView)
+        view.addSubview(firstView)
 
-        mainView.translatesAutoresizingMaskIntoConstraints = false
-        mainView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        mainView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        mainView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        mainView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        firstView.translatesAutoresizingMaskIntoConstraints = false
+        firstView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        firstView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        firstView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        firstView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 
     }
 }
@@ -46,11 +55,24 @@ extension FirstVC : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomCell
-        cell = CustomCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "Cell")
+        var cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableCell
+        cell = CustomTableCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "Cell")
         if let label = cell.textLabel {
             label.text = "\(info[indexPath.row])"
         }
         return cell
     }
+}
+
+extension FirstVC : UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CustomCollectionCell
+        cell = CustomCollectionCell()
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
 }
