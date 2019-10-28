@@ -34,6 +34,8 @@ class FirstVC: UIViewController {
 
         view.addSubview(firstView)
 
+        firstView.scroll.contentSize = firstView.backView.bounds.size
+        
         firstView.translatesAutoresizingMaskIntoConstraints = false
         firstView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         firstView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -55,8 +57,8 @@ extension FirstVC : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableCell
-        cell = CustomTableCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "Cell")
+        var cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! CustomTableCell
+        cell = CustomTableCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "TableCell")
         if let label = cell.textLabel {
             label.text = "\(info[indexPath.row])"
         }
@@ -66,13 +68,14 @@ extension FirstVC : UITableViewDataSource, UITableViewDelegate {
 
 extension FirstVC : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CustomCollectionCell
-        cell = CustomCollectionCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CustomCollectionCell
+        cell.imageView.image = UIImage(named: "\(songs[indexPath.item]).png")
+        cell.title.text = "\(songs[indexPath.item])"
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
 }

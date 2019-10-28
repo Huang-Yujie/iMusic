@@ -9,6 +9,8 @@
 import UIKit
 
 let info = ["播放列表", "艺人", "专辑", "歌曲"]
+let songs = ["Galway Girl", "Photograph"]
+
 class FirstView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,38 +24,70 @@ class FirstView: UIView {
     private func setUpSubViews(){
         self.backgroundColor = .white
         
-//        self.addSubview(topButton)
-        self.addSubview(topLabel)
-        self.addSubview(topTable)
         self.addSubview(topBar)
-        self.addSubview(collection)
+        self.addSubview(scroll)
         
-        topLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15).isActive = true
-        topLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        topLabel.topAnchor.constraint(equalTo: topBar.bottomAnchor, constant: 10).isActive = true
+        scroll.addSubview(backView)
+        
+        backView.addSubview(topLabel)
+        backView.addSubview(topTable)
+        backView.addSubview(label)
+        backView.addSubview(collection)
         
         topBar.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         topBar.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         topBar.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         topBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
+        scroll.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        scroll.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        scroll.topAnchor.constraint(equalTo: topBar.bottomAnchor).isActive = true
+        scroll.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        backView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        backView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backView.topAnchor.constraint(equalTo: scroll.topAnchor).isActive = true
+        backView.bottomAnchor.constraint(equalTo: collection.bottomAnchor).isActive = true
+        
+        topLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 18).isActive = true
+        topLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        topLabel.topAnchor.constraint(equalTo: topBar.bottomAnchor, constant: 10).isActive = true
+        
         topTable.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         topTable.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        topTable.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 10).isActive = true
+        topTable.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 4).isActive = true
         topTable.heightAnchor.constraint(equalToConstant: 240).isActive = true
 
-        collection.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        collection.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        collection.topAnchor.constraint(equalTo: topTable.bottomAnchor).isActive = true
-        collection.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        label.leadingAnchor.constraint(equalTo: topLabel.leadingAnchor).isActive = true
+        label.trailingAnchor.constraint(equalTo: topLabel.trailingAnchor).isActive = true
+        label.topAnchor.constraint(equalTo: topTable.bottomAnchor).isActive = true
+        
+        collection.leadingAnchor.constraint(equalTo: topLabel.leadingAnchor).isActive = true
+        collection.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -18).isActive = true
+        collection.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 5).isActive = true
+        collection.heightAnchor.constraint(equalToConstant: 800).isActive = true
     }
     
-    let topBar : UINavigationBar = {
+    let backView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let scroll: UIScrollView = {
+        let scroll = UIScrollView()
+//        scroll.contentSize =
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        return scroll
+    }()
+    
+    let topBar: UINavigationBar = {
         let bar = UINavigationBar()
         let barButton = UIBarButtonItem()
         barButton.title = "编辑"
         barButton.tintColor = UIColor.red
         bar.isTranslucent = false
+        bar.shadowImage = UIImage()
         let barItem = UINavigationItem(title: "资料库")
         bar.items?.append(barItem)
         bar.topItem?.title = "资料库"
@@ -62,7 +96,7 @@ class FirstView: UIView {
         return bar
     }()
     
-    let topLabel : UILabel = {
+    let topLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
         label.text = "资料库"
@@ -73,25 +107,38 @@ class FirstView: UIView {
         return label
     }()
     
-    let topTable : UITableView = {
+    let topTable: UITableView = {
         let table = UITableView(frame: CGRect(), style: .plain)
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.register(CustomTableCell.self, forCellReuseIdentifier: "Cell")
+        table.register(CustomTableCell.self, forCellReuseIdentifier: "TableCell")
         table.rowHeight = 57
+        table.isScrollEnabled = false
         return table
     }()
     
-    let collection :UICollectionView = {
+    let label: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .clear
+        label.text = "最近添加"
+        label.textAlignment = .left
+        label.font = UIFont.init(name: "PingFang-SC-Medium", size: 20)
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let collection: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 160, height: 200)
+        layout.itemSize = CGSize(width: 180, height: 300)
         layout.minimumLineSpacing = 30
-        layout.minimumInteritemSpacing = 50
+        layout.minimumInteritemSpacing = 10
         
-        let collection = UICollectionView()
-        collection.collectionViewLayout = layout
+        let collection = UICollectionView(frame: CGRect(), collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.register(CustomCollectionCell.self, forCellWithReuseIdentifier: "Cell")
+        collection.backgroundColor = .clear
+        collection.isScrollEnabled = false
+        collection.register(CustomCollectionCell.self, forCellWithReuseIdentifier: "CollectionCell")
         return collection
     }()
 }
