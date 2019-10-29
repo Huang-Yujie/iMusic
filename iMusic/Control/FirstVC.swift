@@ -8,24 +8,30 @@
 
 import UIKit
 
-class FirstVC: UIViewController {
+class FirstVC: UINavigationController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}
+
+class FirstRootVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         
-        firstView.topBar.delegate = self
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationItem.rightBarButtonItem = editButtonItem
+        self.navigationController?.navigationBar.tintColor = .red
         
         firstView.topTable.delegate = self
         firstView.topTable.dataSource = self
         
         firstView.collection.delegate = self
         firstView.collection.dataSource = self
-//        let layout = UICollectionViewFlowLayout()
-//        layout.itemSize = CGSize(width: 160, height: 200)
-//        layout.minimumLineSpacing = 30
-//        layout.minimumInteritemSpacing = 50
-//        firstView.collection.collectionViewLayout = layout
+        
+        self.title = "资料库"
     }
 
     let firstView = FirstView()
@@ -45,13 +51,7 @@ class FirstVC: UIViewController {
     }
 }
 
-extension FirstVC: UINavigationBarDelegate {
-    func position(for bar: UIBarPositioning) -> UIBarPosition {
-        return .topAttached
-    }
-}
-
-extension FirstVC : UITableViewDataSource, UITableViewDelegate {
+extension FirstRootVC : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return info.count
     }
@@ -64,9 +64,30 @@ extension FirstVC : UITableViewDataSource, UITableViewDelegate {
         }
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        enum controllers: Int {case Playlists = 0, Artists, Albums, Songs}
+        let page = controllers(rawValue: indexPath.row)
+        switch page {
+        case .Playlists:
+            self.navigationController?.pushViewController(PlaylistsVC(), animated: true)
+        case .Artists:
+            self.navigationController?.pushViewController(ArtistsVC(), animated: true)
+        case .Albums:
+            self.navigationController?.pushViewController(AlbumsVC(), animated: true)
+        case .Songs:
+            self.navigationController?.pushViewController(SongsVC(), animated: true)
+        case .none:
+            break
+        }
+    }
 }
 
-extension FirstVC : UICollectionViewDelegate, UICollectionViewDataSource {
+extension FirstRootVC : UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CustomCollectionCell
         cell.imageView.image = UIImage(named: "\(songs[indexPath.item]).png")
@@ -74,8 +95,7 @@ extension FirstVC : UICollectionViewDelegate, UICollectionViewDataSource {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.present(PlayerVC(), animated: true, completion: .none)
     }
-    
 }

@@ -24,7 +24,6 @@ class FirstView: UIView {
     private func setUpSubViews(){
         self.backgroundColor = .white
         
-        self.addSubview(topBar)
         self.addSubview(scroll)
         
         scroll.addSubview(backView)
@@ -34,14 +33,9 @@ class FirstView: UIView {
         backView.addSubview(label)
         backView.addSubview(collection)
         
-        topBar.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        topBar.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        topBar.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
-        topBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
         scroll.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         scroll.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        scroll.topAnchor.constraint(equalTo: topBar.bottomAnchor).isActive = true
+        scroll.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         scroll.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
         backView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
@@ -51,7 +45,7 @@ class FirstView: UIView {
         
         topLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 18).isActive = true
         topLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        topLabel.topAnchor.constraint(equalTo: topBar.bottomAnchor, constant: 10).isActive = true
+        topLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         
         topTable.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         topTable.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
@@ -76,26 +70,10 @@ class FirstView: UIView {
     
     let scroll: UIScrollView = {
         let scroll = UIScrollView()
-//        scroll.contentSize =
         scroll.translatesAutoresizingMaskIntoConstraints = false
         return scroll
     }()
-    
-    let topBar: UINavigationBar = {
-        let bar = UINavigationBar()
-        let barButton = UIBarButtonItem()
-        barButton.title = "编辑"
-        barButton.tintColor = UIColor.red
-        bar.isTranslucent = false
-        bar.shadowImage = UIImage()
-        let barItem = UINavigationItem(title: "资料库")
-        bar.items?.append(barItem)
-        bar.topItem?.title = "资料库"
-        bar.topItem?.rightBarButtonItem = barButton
-        bar.translatesAutoresizingMaskIntoConstraints = false
-        return bar
-    }()
-    
+        
     let topLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear

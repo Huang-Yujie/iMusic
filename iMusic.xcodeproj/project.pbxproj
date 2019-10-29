@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6031A822367E8B900792CC9 /* PlaylistsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6031A812367E8B900792CC9 /* PlaylistsVC.swift */; };
+		B6031A842367E8CB00792CC9 /* ArtistsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6031A832367E8CB00792CC9 /* ArtistsVC.swift */; };
+		B6031A862367E8E400792CC9 /* AlbumsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6031A852367E8E400792CC9 /* AlbumsVC.swift */; };
+		B6031A882367E8FF00792CC9 /* SongsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6031A872367E8FF00792CC9 /* SongsVC.swift */; };
+		B635A69D2368814C0007EF4F /* Playback.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635A69C2368814C0007EF4F /* Playback.swift */; };
+		B635A6A0236885820007EF4F /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635A69F236885820007EF4F /* PlayerView.swift */; };
+		B635A6A22368859F0007EF4F /* PlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635A6A12368859F0007EF4F /* PlayerVC.swift */; };
 		B6B4BC54236199BD003A6AF4 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B4BC52236199BD003A6AF4 /* FirstView.swift */; };
 		B6B4BC55236199BD003A6AF4 /* CustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B4BC53236199BD003A6AF4 /* CustomTableCell.swift */; };
 		B6B4BC6723619A94003A6AF4 /* FourthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B4BC6223619A94003A6AF4 /* FourthVC.swift */; };
@@ -28,6 +35,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B6031A812367E8B900792CC9 /* PlaylistsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsVC.swift; sourceTree = "<group>"; };
+		B6031A832367E8CB00792CC9 /* ArtistsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsVC.swift; sourceTree = "<group>"; };
+		B6031A852367E8E400792CC9 /* AlbumsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsVC.swift; sourceTree = "<group>"; };
+		B6031A872367E8FF00792CC9 /* SongsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsVC.swift; sourceTree = "<group>"; };
+		B635A69A23685C630007EF4F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		B635A69B23685C630007EF4F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		B635A69C2368814C0007EF4F /* Playback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playback.swift; sourceTree = "<group>"; };
+		B635A69F236885820007EF4F /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		B635A6A12368859F0007EF4F /* PlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerVC.swift; sourceTree = "<group>"; };
 		B6B4BC52236199BD003A6AF4 /* FirstView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
 		B6B4BC53236199BD003A6AF4 /* CustomTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableCell.swift; sourceTree = "<group>"; };
 		B6B4BC6223619A94003A6AF4 /* FourthVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthVC.swift; sourceTree = "<group>"; };
@@ -61,6 +77,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B6031A802367E87800792CC9 /* FirstVC */ = {
+			isa = PBXGroup;
+			children = (
+				B6031A812367E8B900792CC9 /* PlaylistsVC.swift */,
+				B6031A832367E8CB00792CC9 /* ArtistsVC.swift */,
+				B6031A852367E8E400792CC9 /* AlbumsVC.swift */,
+				B6031A872367E8FF00792CC9 /* SongsVC.swift */,
+			);
+			path = FirstVC;
+			sourceTree = "<group>";
+		};
+		B635A69E2368855E0007EF4F /* Cell Views */ = {
+			isa = PBXGroup;
+			children = (
+				B6B4BC53236199BD003A6AF4 /* CustomTableCell.swift */,
+				B6CCE4A923658D8F000CB030 /* CustomCollectionCell.swift */,
+			);
+			path = "Cell Views";
+			sourceTree = "<group>";
+		};
 		B6CCE4A823644DF6000CB030 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,10 +140,12 @@
 			isa = PBXGroup;
 			children = (
 				B6B4BC6523619A94003A6AF4 /* FirstVC.swift */,
+				B6031A802367E87800792CC9 /* FirstVC */,
 				B6B4BC6423619A94003A6AF4 /* SecondVC.swift */,
 				B6B4BC6623619A94003A6AF4 /* ThirdVC.swift */,
 				B6B4BC6223619A94003A6AF4 /* FourthVC.swift */,
 				B6B4BC6323619A94003A6AF4 /* FifthVC.swift */,
+				B635A6A12368859F0007EF4F /* PlayerVC.swift */,
 				B6E5BCCF235D5DF900571E49 /* ViewController.swift */,
 			);
 			path = Control;
@@ -116,9 +154,9 @@
 		B6E5BCE0235D784E00571E49 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B6B4BC53236199BD003A6AF4 /* CustomTableCell.swift */,
-				B6CCE4A923658D8F000CB030 /* CustomCollectionCell.swift */,
 				B6B4BC52236199BD003A6AF4 /* FirstView.swift */,
+				B635A69F236885820007EF4F /* PlayerView.swift */,
+				B635A69E2368855E0007EF4F /* Cell Views */,
 				B6CCE4A823644DF6000CB030 /* SubViews */,
 			);
 			path = View;
@@ -139,6 +177,7 @@
 		B6E5BCE5235D791A00571E49 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B635A69C2368814C0007EF4F /* Playback.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -185,6 +224,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = B6E5BCBF235D5DF900571E49;
 			productRefGroup = B6E5BCC9235D5DF900571E49 /* Products */;
@@ -214,21 +254,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B635A69D2368814C0007EF4F /* Playback.swift in Sources */,
 				B6E5BCD0235D5DF900571E49 /* ViewController.swift in Sources */,
+				B6031A842367E8CB00792CC9 /* ArtistsVC.swift in Sources */,
 				B6B4BC54236199BD003A6AF4 /* FirstView.swift in Sources */,
 				B6CCE4A323644DC3000CB030 /* Artists.swift in Sources */,
 				B6B4BC6823619A94003A6AF4 /* FifthVC.swift in Sources */,
 				B6B4BC6A23619A94003A6AF4 /* FirstVC.swift in Sources */,
+				B6031A862367E8E400792CC9 /* AlbumsVC.swift in Sources */,
 				B6CCE4A523644DD4000CB030 /* Albums.swift in Sources */,
+				B635A6A0236885820007EF4F /* PlayerView.swift in Sources */,
 				B6B4BC6923619A94003A6AF4 /* SecondVC.swift in Sources */,
 				B6B4BC6B23619A94003A6AF4 /* ThirdVC.swift in Sources */,
 				B6E5BCCC235D5DF900571E49 /* AppDelegate.swift in Sources */,
 				B6CCE4A123644DAF000CB030 /* Playlists.swift in Sources */,
+				B6031A822367E8B900792CC9 /* PlaylistsVC.swift in Sources */,
 				B6CCE4A723644DE9000CB030 /* Songs.swift in Sources */,
+				B6031A882367E8FF00792CC9 /* SongsVC.swift in Sources */,
 				B6CCE4AA23658D90000CB030 /* CustomCollectionCell.swift in Sources */,
 				B6B4BC55236199BD003A6AF4 /* CustomTableCell.swift in Sources */,
 				B6B4BC6723619A94003A6AF4 /* FourthVC.swift in Sources */,
 				B6E5BCCE235D5DF900571E49 /* SceneDelegate.swift in Sources */,
+				B635A6A22368859F0007EF4F /* PlayerVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +286,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B6E5BCD2235D5DF900571E49 /* Base */,
+				B635A69A23685C630007EF4F /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -247,6 +295,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B6E5BCD7235D5DFC00571E49 /* Base */,
+				B635A69B23685C630007EF4F /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -258,6 +307,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -318,6 +368,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
