@@ -12,5 +12,6 @@ class PlaylistsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "播放列表"
+        self.view.backgroundColor = .white
     }
 }

@@ -15,7 +15,7 @@ class FirstVC: UINavigationController {
 }
 
 class FirstRootVC: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -33,23 +33,26 @@ class FirstRootVC: UIViewController {
         
         self.title = "资料库"
     }
-
+    
     let firstView = FirstView()
     
     private func setupViews(){
-
+        
         view.addSubview(firstView)
-
+        
         firstView.scroll.contentSize = firstView.backView.bounds.size
+        
         
         firstView.translatesAutoresizingMaskIntoConstraints = false
         firstView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         firstView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         firstView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         firstView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-
+        
     }
 }
+
+// MARK: UITableViewDataSource & UITableViewDelegate
 
 extension FirstRootVC : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,6 +87,7 @@ extension FirstRootVC : UITableViewDataSource, UITableViewDelegate {
 }
 
 extension FirstRootVC : UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
     }

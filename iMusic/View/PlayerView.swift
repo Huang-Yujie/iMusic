@@ -25,19 +25,18 @@ class PlayerView: UIView {
 //        self.addSubview(forwardButton)
 //        self.addSubview(playPauseButton)
 //        self.addSubview(volumeSlider)
-        
-//        image.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor).isActive = true
-//        image.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor).isActive = true
-//        image.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
-        image.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        image.heightAnchor.constraint(equalToConstant: 200).isActive = true       
+                
+        image.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        image.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        image.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        image.heightAnchor.constraint(equalToConstant: 400).isActive = true
         
     }
     
     let image: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named:"Galway Girl" )
-//        imageView.largeContentImageInsets = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+        imageView.largeContentImageInsets = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -51,7 +50,6 @@ class PlayerView: UIView {
     
     let progressSlider: UISlider = {
         let slider = UISlider()
-//        slider.
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
     }()

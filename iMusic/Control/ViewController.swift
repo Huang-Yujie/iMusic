@@ -13,15 +13,9 @@ class ViewController: UITabBarController {
         super.viewDidLoad()
         self.tabBar.isTranslucent = false
         self.tabBar.tintColor = .red
-        setUpTabBar()
         setUpVC()
         self.selectedIndex = 0
         
-    }
-    
-    fileprivate func setUpTabBar(){
-
-
     }
     
     fileprivate func setUpVC(){

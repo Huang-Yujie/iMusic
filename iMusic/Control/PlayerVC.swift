@@ -12,6 +12,12 @@ class PlayerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.modalPresentationStyle = .formSheet
-        view.addSubview(PlayerView())
+        let playView = PlayerView()
+        view.addSubview(playView)
+        playView.translatesAutoresizingMaskIntoConstraints = false
+        playView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        playView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        playView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        playView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 }
