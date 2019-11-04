@@ -11,7 +11,7 @@ import UIKit
 let info = ["播放列表", "艺人", "专辑", "歌曲"]
 let songs = ["Galway Girl", "Photograph"]
 
-class FirstView: UIView {
+class LibraryView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpSubViews()
@@ -108,7 +108,7 @@ class FirstView: UIView {
     let collection: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 180, height: 300)
+        layout.itemSize = CGSize(width: 180, height: 200)
         layout.minimumLineSpacing = 30
         layout.minimumInteritemSpacing = 10
         

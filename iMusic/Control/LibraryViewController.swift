@@ -25,29 +25,29 @@ class LibraryRootViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = editButtonItem
         self.navigationController?.navigationBar.tintColor = .red
         
-        firstView.topTable.delegate = self
-        firstView.topTable.dataSource = self
+        libraryView.topTable.delegate = self
+        libraryView.topTable.dataSource = self
         
-        firstView.collection.delegate = self
-        firstView.collection.dataSource = self
+        libraryView.collection.delegate = self
+        libraryView.collection.dataSource = self
         
         self.title = "资料库"
     }
     
-    let firstView = FirstView()
+    let libraryView = LibraryView()
     
     private func setupViews(){
         
-        view.addSubview(firstView)
+        view.addSubview(libraryView)
         
-        firstView.scroll.contentSize = firstView.backView.bounds.size
+        libraryView.scroll.contentSize = libraryView.backView.bounds.size
         
         
-        firstView.translatesAutoresizingMaskIntoConstraints = false
-        firstView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        firstView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        firstView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        firstView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        libraryView.translatesAutoresizingMaskIntoConstraints = false
+        libraryView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        libraryView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        libraryView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        libraryView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
     }
 }
@@ -69,27 +69,16 @@ extension LibraryRootViewController : UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        enum controllers: Int {case Playlists = 0, Artists, Albums, Songs}
-        let page = controllers(rawValue: indexPath.row)
-        switch page {
-        case .Playlists:
-            self.navigationController?.pushViewController(PlaylistsVC(), animated: true)
-        case .Artists:
-            self.navigationController?.pushViewController(ArtistsVC(), animated: true)
-        case .Albums:
-            self.navigationController?.pushViewController(AlbumsVC(), animated: true)
-        case .Songs:
-            self.navigationController?.pushViewController(SongsVC(), animated: true)
-        case .none:
-            break
-        }
+        let controllerTitle = ["播放列表", "艺人", "专辑", "歌曲"]
+        let subViewController = SubviewController(controllerTitle[indexPath.row])
+        self.navigationController?.pushViewController(subViewController, animated: true)
     }
 }
 
 extension LibraryRootViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return songs.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

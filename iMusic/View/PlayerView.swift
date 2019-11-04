@@ -23,10 +23,10 @@ class PlayerView: UIView {
         self.addSubview(image)
         self.addSubview(songNameLabel)
         self.addSubview(progressSlider)
-//        self.addSubview(backwardButton)
-//        self.addSubview(forwardButton)
-//        self.addSubview(playPauseButton)
-//        self.addSubview(volumeSlider)
+        self.addSubview(backwardButton)
+        self.addSubview(forwardButton)
+        self.addSubview(playPauseButton)
+        self.addSubview(volumeSlider)
                 
         image.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         image.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
@@ -41,17 +41,36 @@ class PlayerView: UIView {
         progressSlider.trailingAnchor.constraint(equalTo: songNameLabel.trailingAnchor).isActive = true
         progressSlider.topAnchor.constraint(equalTo: songNameLabel.bottomAnchor, constant: 60).isActive = true
         
+        playPauseButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        playPauseButton.centerYAnchor.constraint(equalTo: progressSlider.bottomAnchor, constant: 80).isActive = true
+        playPauseButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        playPauseButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         
+        backwardButton.centerYAnchor.constraint(equalTo: playPauseButton.centerYAnchor).isActive = true
+        backwardButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -UIScreen.main.bounds.width/4).isActive = true
+        backwardButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        backwardButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        forwardButton.centerYAnchor.constraint(equalTo: playPauseButton.centerYAnchor).isActive = true
+        forwardButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: UIScreen.main.bounds.width/4).isActive = true
+        forwardButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        forwardButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        volumeSlider.leadingAnchor.constraint(equalTo: songNameLabel.leadingAnchor).isActive = true
+        volumeSlider.trailingAnchor.constraint(equalTo: songNameLabel.trailingAnchor).isActive = true
+        volumeSlider.topAnchor.constraint(equalTo: playPauseButton.bottomAnchor, constant: 60).isActive = true
     }
     
     let image: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(named:"Galway Girl" )
         
-        imageView.image = image?.withAlignmentRectInsets(UIEdgeInsets(top: -100, left: -100, bottom: -100, right: -100))
-
-//        imageView.contentMode = .center
-//        imageView.largeContentImageInsets = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+        imageView.image = image?.withAlignmentRectInsets(UIEdgeInsets(top: -70, left: -70, bottom: -70, right: -70))
+        imageView.layer.cornerRadius = 8
+//        imageView.layer.shadowColor = UIColor.black.cgColor
+//        imageView.layer.shadowOffset = CGSize(width: 10, height: 10)
+//        imageView.layer.shadowOpacity = 0.4
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -66,29 +85,32 @@ class PlayerView: UIView {
     
     let progressSlider: UISlider = {
         let slider = UISlider()
-        slider.tintColor = .gray
-        slider.thumbTintColor = .gray
+        slider.tintColor = .lightGray
+        slider.thumbTintColor = .lightGray
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
     }()
     
     let backwardButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "backward.fill"), for: .normal)
+        button.setBackgroundImage(UIImage(systemName: "backward.fill"), for: .normal)
+        button.tintColor = .black
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     let forwardButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "forward.fill"), for: .normal)
+        button.setBackgroundImage(UIImage(systemName: "forward.fill"), for: .normal)
+        button.tintColor = .black
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     let playPauseButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        button.setBackgroundImage(UIImage(systemName: "play.fill"), for: .normal)
+        button.tintColor = .black
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -97,6 +119,7 @@ class PlayerView: UIView {
         let slider = UISlider()
         slider.minimumValueImage = UIImage(systemName: "speaker.fill")
         slider.maximumValueImage = UIImage(systemName: "speaker.3.fill")
+        slider.tintColor = .lightGray
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
     }()
