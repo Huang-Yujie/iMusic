@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FifthVC: UIViewController {
+class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

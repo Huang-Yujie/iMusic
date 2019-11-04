@@ -1,5 +1,5 @@
 //
-//  FourthVC.swift
+//  ThirdVC.swift
 //  iMusic
 //
 //  Created by 黄宇杰 on 2019/10/24.
@@ -8,13 +8,14 @@
 
 import UIKit
 
-class FourthVC: UIViewController {
+class BrowseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
+
 }
 
-//let fourthVC = FourthVC()
+//let thirdVC = ThirdVC()

@@ -1,5 +1,5 @@
 //
-//  SecondVC.swift
+//  FourthVC.swift
 //  iMusic
 //
 //  Created by 黄宇杰 on 2019/10/24.
@@ -8,14 +8,13 @@
 
 import UIKit
 
-class SecondVC: UIViewController {
+class RadioViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
-
 }
 
-//let secondVC = SecondVC()
+//let fourthVC = FourthVC()

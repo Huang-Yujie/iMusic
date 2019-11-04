@@ -8,13 +8,13 @@
 
 import UIKit
 
-class FirstVC: UINavigationController {
+class LibraryViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 }
 
-class FirstRootVC: UIViewController {
+class LibraryRootViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +54,7 @@ class FirstRootVC: UIViewController {
 
 // MARK: UITableViewDataSource & UITableViewDelegate
 
-extension FirstRootVC : UITableViewDataSource, UITableViewDelegate {
+extension LibraryRootViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return info.count
     }
@@ -86,7 +86,7 @@ extension FirstRootVC : UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension FirstRootVC : UICollectionViewDelegate, UICollectionViewDataSource {
+extension LibraryRootViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2

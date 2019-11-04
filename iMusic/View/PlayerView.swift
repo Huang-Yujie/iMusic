@@ -11,6 +11,8 @@ import UIKit
 class PlayerView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .white
+        
         setUpViews()
     }
     
@@ -19,8 +21,8 @@ class PlayerView: UIView {
     }
     private func setUpViews() {
         self.addSubview(image)
-//        self.addSubview(songNameLabel)
-//        self.addSubview(progressSlider)
+        self.addSubview(songNameLabel)
+        self.addSubview(progressSlider)
 //        self.addSubview(backwardButton)
 //        self.addSubview(forwardButton)
 //        self.addSubview(playPauseButton)
@@ -31,25 +33,41 @@ class PlayerView: UIView {
         image.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         image.heightAnchor.constraint(equalToConstant: 400).isActive = true
         
+        songNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
+        songNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
+        songNameLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 10).isActive = true
+        
+        progressSlider.leadingAnchor.constraint(equalTo: songNameLabel.leadingAnchor).isActive = true
+        progressSlider.trailingAnchor.constraint(equalTo: songNameLabel.trailingAnchor).isActive = true
+        progressSlider.topAnchor.constraint(equalTo: songNameLabel.bottomAnchor, constant: 60).isActive = true
+        
+        
     }
     
     let image: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named:"Galway Girl" )
-        imageView.largeContentImageInsets = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+        let image = UIImage(named:"Galway Girl" )
+        
+        imageView.image = image?.withAlignmentRectInsets(UIEdgeInsets(top: -100, left: -100, bottom: -100, right: -100))
+
+//        imageView.contentMode = .center
+//        imageView.largeContentImageInsets = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     let songNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Galway Gril"
+        label.text = "Galway Girl"
+        label.font = UIFont(name: "PingFang-SC-Semibold", size: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let progressSlider: UISlider = {
         let slider = UISlider()
+        slider.tintColor = .gray
+        slider.thumbTintColor = .gray
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
     }()

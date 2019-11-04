@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBar.isTranslucent = false
+        self.tabBar.isTranslucent = true
         self.tabBar.tintColor = .red
         setUpVC()
         self.selectedIndex = 0
@@ -19,17 +19,17 @@ class ViewController: UITabBarController {
     }
     
     fileprivate func setUpVC(){
-        let firstVC = FirstVC(rootViewController: FirstRootVC())
-        let secondVC = SecondVC()
-        let thirdVC = ThirdVC()
-        let fourthVC = FourthVC()
-        let fifthVC = FifthVC()
+        let libraryViewController = LibraryViewController(rootViewController: LibraryRootViewController())
+        let forYouViewController = ForYouViewController()
+        let browseViewController = BrowseViewController()
+        let radioViewController = RadioViewController()
+        let searchViewController = SearchViewController()
         
-        firstVC.tabBarItem.title = "资料库"
-        secondVC.tabBarItem.title = "为你推荐"
-        thirdVC.tabBarItem.title = "浏览"
-        fourthVC.tabBarItem.title = "广播"
-        fifthVC.tabBarItem.title = "搜索"
+        libraryViewController.tabBarItem.title = "资料库"
+        forYouViewController.tabBarItem.title = "为你推荐"
+        browseViewController.tabBarItem.title = "浏览"
+        radioViewController.tabBarItem.title = "广播"
+        searchViewController.tabBarItem.title = "搜索"
                 
         
 //        fisrtVC.tabBarItem.image = UIImage(named: "FirstVCDeselected")
@@ -42,7 +42,7 @@ class ViewController: UITabBarController {
 //        fisrtVC.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
 //        secondVC.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
 //        thirdVC.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
-        self.viewControllers = [firstVC, secondVC, thirdVC, fourthVC, fifthVC]
+        self.viewControllers = [libraryViewController, forYouViewController, browseViewController, radioViewController, searchViewController]
         
     }
     

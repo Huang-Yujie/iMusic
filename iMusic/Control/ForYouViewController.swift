@@ -1,5 +1,5 @@
 //
-//  ThirdVC.swift
+//  SecondVC.swift
 //  iMusic
 //
 //  Created by 黄宇杰 on 2019/10/24.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ThirdVC: UIViewController {
+class ForYouViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,4 +18,4 @@ class ThirdVC: UIViewController {
 
 }
 
-//let thirdVC = ThirdVC()
+//let secondVC = SecondVC()
