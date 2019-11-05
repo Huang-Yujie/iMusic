@@ -89,6 +89,6 @@ extension LibraryRootViewController : UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.present(PlayerVC(), animated: true, completion: .none)
+        self.present(PlayerViewController(), animated: true, completion: .none)
     }
 }

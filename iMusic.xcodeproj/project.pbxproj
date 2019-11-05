@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		B635A69D2368814C0007EF4F /* Playback.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635A69C2368814C0007EF4F /* Playback.swift */; };
 		B635A6A0236885820007EF4F /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635A69F236885820007EF4F /* PlayerView.swift */; };
-		B635A6A22368859F0007EF4F /* PlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635A6A12368859F0007EF4F /* PlayerVC.swift */; };
+		B635A6A22368859F0007EF4F /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635A6A12368859F0007EF4F /* PlayerViewController.swift */; };
+		B638CD2A23713D73006C24AA /* Galway Girl.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B638CD2923713D73006C24AA /* Galway Girl.mp3 */; };
 		B69D05AD2370605F00F37A71 /* SubviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69D05AC2370605F00F37A71 /* SubviewController.swift */; };
 		B6B4BC54236199BD003A6AF4 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B4BC52236199BD003A6AF4 /* LibraryView.swift */; };
 		B6B4BC55236199BD003A6AF4 /* CustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B4BC53236199BD003A6AF4 /* CustomTableCell.swift */; };
@@ -32,7 +33,8 @@
 		B635A69B23685C630007EF4F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		B635A69C2368814C0007EF4F /* Playback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playback.swift; sourceTree = "<group>"; };
 		B635A69F236885820007EF4F /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
-		B635A6A12368859F0007EF4F /* PlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerVC.swift; sourceTree = "<group>"; };
+		B635A6A12368859F0007EF4F /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		B638CD2923713D73006C24AA /* Galway Girl.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Galway Girl.mp3"; sourceTree = "<group>"; };
 		B69D05AC2370605F00F37A71 /* SubviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubviewController.swift; sourceTree = "<group>"; };
 		B6B4BC52236199BD003A6AF4 /* LibraryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		B6B4BC53236199BD003A6AF4 /* CustomTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableCell.swift; sourceTree = "<group>"; };
@@ -109,7 +111,7 @@
 				B6B4BC6623619A94003A6AF4 /* BrowseViewController.swift */,
 				B6B4BC6223619A94003A6AF4 /* RadioViewController.swift */,
 				B6B4BC6323619A94003A6AF4 /* SearchViewController.swift */,
-				B635A6A12368859F0007EF4F /* PlayerVC.swift */,
+				B635A6A12368859F0007EF4F /* PlayerViewController.swift */,
 				B6E5BCCF235D5DF900571E49 /* ViewController.swift */,
 			);
 			path = Control;
@@ -128,6 +130,7 @@
 		B6E5BCE2235D788D00571E49 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				B638CD2923713D73006C24AA /* Galway Girl.mp3 */,
 				B6E5BCCB235D5DF900571E49 /* AppDelegate.swift */,
 				B6E5BCCD235D5DF900571E49 /* SceneDelegate.swift */,
 				B6E5BCD1235D5DF900571E49 /* Main.storyboard */,
@@ -204,6 +207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B638CD2A23713D73006C24AA /* Galway Girl.mp3 in Resources */,
 				B6E5BCD8235D5DFC00571E49 /* LaunchScreen.storyboard in Resources */,
 				B6E5BCD5235D5DFC00571E49 /* Assets.xcassets in Resources */,
 				B6E5BCD3235D5DF900571E49 /* Main.storyboard in Resources */,
@@ -231,7 +235,7 @@
 				B6B4BC55236199BD003A6AF4 /* CustomTableCell.swift in Sources */,
 				B6B4BC6723619A94003A6AF4 /* RadioViewController.swift in Sources */,
 				B6E5BCCE235D5DF900571E49 /* SceneDelegate.swift in Sources */,
-				B635A6A22368859F0007EF4F /* PlayerVC.swift in Sources */,
+				B635A6A22368859F0007EF4F /* PlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

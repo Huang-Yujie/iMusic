@@ -109,7 +109,7 @@ class PlayerView: UIView {
     
     let playPauseButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(systemName: "play.fill"), for: .normal)
+        button.setBackgroundImage(UIImage(systemName: "pause.fill"), for: .normal)
         button.tintColor = .black
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -117,11 +117,13 @@ class PlayerView: UIView {
     
     let volumeSlider: UISlider = {
         let slider = UISlider()
+        slider.minimumValue = 0
+        slider.maximumValue = 1
+        slider.value = 0.5
         slider.minimumValueImage = UIImage(systemName: "speaker.fill")
         slider.maximumValueImage = UIImage(systemName: "speaker.3.fill")
         slider.tintColor = .lightGray
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
     }()
-    
 }
