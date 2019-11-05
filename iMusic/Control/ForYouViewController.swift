@@ -14,8 +14,4 @@ class ForYouViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
 }
-
-//let secondVC = SecondVC()

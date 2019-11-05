@@ -89,6 +89,7 @@ extension LibraryRootViewController : UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        Current.songName = songs[indexPath.item]
         self.present(PlayerViewController(), animated: true, completion: .none)
     }
 }

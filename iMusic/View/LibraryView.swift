@@ -8,9 +8,6 @@
 
 import UIKit
 
-let info = ["播放列表", "艺人", "专辑", "歌曲"]
-let songs = ["Galway Girl", "Photograph"]
-
 class LibraryView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)

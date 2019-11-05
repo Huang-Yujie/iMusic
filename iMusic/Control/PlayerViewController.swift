@@ -8,9 +8,9 @@
 
 import UIKit
 
+var playback: Playback!
+
 class PlayerViewController: UIViewController {
-    
-    var playback: Playback!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +25,21 @@ class PlayerViewController: UIViewController {
         playView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         do {
-            playback = try Playback(contentsOf: Bundle.main.url(forResource: "Galway Girl", withExtension: "mp3")!)
+            playback = try Playback(contentsOf: Bundle.main.url(forResource: Current.songName, withExtension: "mp3")!)
             playback.setProgressSlider(playView.progressSlider)
             playView.playPauseButton.addTarget(self, action: #selector(switchPlayPause(_:)), for: .touchUpInside)
+            playView.progressSlider.addTarget(self, action: #selector(editProgress), for: .valueChanged)
             playback.setVolumeSlider(playView.volumeSlider)
         } catch {print("Error")}
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        playback.pause()
+    }
+        
+    @objc func editProgress() {
+        playback.editProgressSlider()
     }
     
     @objc func switchPlayPause(_ button: UIButton) {

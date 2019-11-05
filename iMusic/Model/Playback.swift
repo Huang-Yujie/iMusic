@@ -38,6 +38,10 @@ class Playback: AVAudioPlayer {
         }
     }
     
+    func editProgressSlider() {
+        self.currentTime = TimeInterval(exactly: progressSlider.value)!
+    }
+    
     func setVolumeSlider(_ slider: UISlider) {
         volumeSlider = slider
         Timer.scheduledTimer(timeInterval: 0.0, target: self, selector: #selector(updateVolume), userInfo: nil, repeats: true)

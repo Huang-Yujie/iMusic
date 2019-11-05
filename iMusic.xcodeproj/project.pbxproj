@@ -20,6 +20,8 @@
 		B6B4BC6A23619A94003A6AF4 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B4BC6523619A94003A6AF4 /* LibraryViewController.swift */; };
 		B6B4BC6B23619A94003A6AF4 /* BrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B4BC6623619A94003A6AF4 /* BrowseViewController.swift */; };
 		B6CCE4AA23658D90000CB030 /* CustomCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CCE4A923658D8F000CB030 /* CustomCollectionCell.swift */; };
+		B6D49F1523719CF1007851FC /* SupportFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D49F1423719CF1007851FC /* SupportFile.swift */; };
+		B6D49F172371A8B2007851FC /* Photograph.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B6D49F162371A8B2007851FC /* Photograph.mp3 */; };
 		B6E5BCCC235D5DF900571E49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E5BCCB235D5DF900571E49 /* AppDelegate.swift */; };
 		B6E5BCCE235D5DF900571E49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E5BCCD235D5DF900571E49 /* SceneDelegate.swift */; };
 		B6E5BCD0235D5DF900571E49 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E5BCCF235D5DF900571E49 /* ViewController.swift */; };
@@ -44,6 +46,8 @@
 		B6B4BC6523619A94003A6AF4 /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		B6B4BC6623619A94003A6AF4 /* BrowseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseViewController.swift; sourceTree = "<group>"; };
 		B6CCE4A923658D8F000CB030 /* CustomCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionCell.swift; sourceTree = "<group>"; };
+		B6D49F1423719CF1007851FC /* SupportFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportFile.swift; sourceTree = "<group>"; };
+		B6D49F162371A8B2007851FC /* Photograph.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Photograph.mp3; sourceTree = "<group>"; };
 		B6E5BCC8235D5DF900571E49 /* iMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E5BCCB235D5DF900571E49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6E5BCCD235D5DF900571E49 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +76,15 @@
 				B6CCE4A923658D8F000CB030 /* CustomCollectionCell.swift */,
 			);
 			path = "Cell Views";
+			sourceTree = "<group>";
+		};
+		B6D49F182371A8C1007851FC /* Songs */ = {
+			isa = PBXGroup;
+			children = (
+				B6D49F162371A8B2007851FC /* Photograph.mp3 */,
+				B638CD2923713D73006C24AA /* Galway Girl.mp3 */,
+			);
+			path = Songs;
 			sourceTree = "<group>";
 		};
 		B6E5BCBF235D5DF900571E49 = {
@@ -105,13 +118,13 @@
 		B6E5BCDF235D77A300571E49 /* Control */ = {
 			isa = PBXGroup;
 			children = (
+				B635A6A12368859F0007EF4F /* PlayerViewController.swift */,
 				B6B4BC6523619A94003A6AF4 /* LibraryViewController.swift */,
 				B69D05AC2370605F00F37A71 /* SubviewController.swift */,
 				B6B4BC6423619A94003A6AF4 /* ForYouViewController.swift */,
 				B6B4BC6623619A94003A6AF4 /* BrowseViewController.swift */,
 				B6B4BC6223619A94003A6AF4 /* RadioViewController.swift */,
 				B6B4BC6323619A94003A6AF4 /* SearchViewController.swift */,
-				B635A6A12368859F0007EF4F /* PlayerViewController.swift */,
 				B6E5BCCF235D5DF900571E49 /* ViewController.swift */,
 			);
 			path = Control;
@@ -130,7 +143,8 @@
 		B6E5BCE2235D788D00571E49 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				B638CD2923713D73006C24AA /* Galway Girl.mp3 */,
+				B6D49F182371A8C1007851FC /* Songs */,
+				B6D49F1423719CF1007851FC /* SupportFile.swift */,
 				B6E5BCCB235D5DF900571E49 /* AppDelegate.swift */,
 				B6E5BCCD235D5DF900571E49 /* SceneDelegate.swift */,
 				B6E5BCD1235D5DF900571E49 /* Main.storyboard */,
@@ -211,6 +225,7 @@
 				B6E5BCD8235D5DFC00571E49 /* LaunchScreen.storyboard in Resources */,
 				B6E5BCD5235D5DFC00571E49 /* Assets.xcassets in Resources */,
 				B6E5BCD3235D5DF900571E49 /* Main.storyboard in Resources */,
+				B6D49F172371A8B2007851FC /* Photograph.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +245,7 @@
 				B6B4BC6923619A94003A6AF4 /* ForYouViewController.swift in Sources */,
 				B6B4BC6B23619A94003A6AF4 /* BrowseViewController.swift in Sources */,
 				B6E5BCCC235D5DF900571E49 /* AppDelegate.swift in Sources */,
+				B6D49F1523719CF1007851FC /* SupportFile.swift in Sources */,
 				B6CCE4AA23658D90000CB030 /* CustomCollectionCell.swift in Sources */,
 				B69D05AD2370605F00F37A71 /* SubviewController.swift in Sources */,
 				B6B4BC55236199BD003A6AF4 /* CustomTableCell.swift in Sources */,

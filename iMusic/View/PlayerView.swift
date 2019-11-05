@@ -63,7 +63,7 @@ class PlayerView: UIView {
     
     let image: UIImageView = {
         let imageView = UIImageView()
-        let image = UIImage(named:"Galway Girl" )
+        let image = UIImage(named: Current.songName)
         
         imageView.image = image?.withAlignmentRectInsets(UIEdgeInsets(top: -70, left: -70, bottom: -70, right: -70))
         imageView.layer.cornerRadius = 8
@@ -77,7 +77,7 @@ class PlayerView: UIView {
     
     let songNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Galway Girl"
+        label.text = Current.songName
         label.font = UIFont(name: "PingFang-SC-Semibold", size: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -88,6 +88,7 @@ class PlayerView: UIView {
         slider.tintColor = .lightGray
         slider.thumbTintColor = .lightGray
         slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.isContinuous = false
         return slider
     }()
     
@@ -126,4 +127,5 @@ class PlayerView: UIView {
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
     }()
+    
 }
