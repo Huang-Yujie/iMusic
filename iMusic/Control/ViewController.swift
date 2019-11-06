@@ -31,17 +31,6 @@ class ViewController: UITabBarController {
         radioViewController.tabBarItem.title = "广播"
         searchViewController.tabBarItem.title = "搜索"
                 
-        
-//        fisrtVC.tabBarItem.image = UIImage(named: "FirstVCDeselected")
-//        fisrtVC.tabBarItem.selectedImage = UIImage(named: "FirstVCSelected")
-//        secondVC.tabBarItem.image = UIImage(named: "SecondVCDeselected")
-//        secondVC.tabBarItem.selectedImage = UIImage(named: "SecondVCSelected")
-//        thirdVC.tabBarItem.image = UIImage(named: "ThirdVCDeselected")
-//        thirdVC.tabBarItem.selectedImage = UIImage(named: "ThirdVCSelected")
-        
-//        fisrtVC.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
-//        secondVC.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
-//        thirdVC.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
         self.viewControllers = [libraryViewController, forYouViewController, browseViewController, radioViewController, searchViewController]
         
     }
