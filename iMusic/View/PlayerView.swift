@@ -27,11 +27,11 @@ class PlayerView: UIView {
         self.addSubview(forwardButton)
         self.addSubview(playPauseButton)
         self.addSubview(volumeSlider)
-                
+        
         image.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         image.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         image.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        image.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        image.heightAnchor.constraint(equalTo: image.widthAnchor).isActive = true
         
         songNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
         songNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
@@ -66,7 +66,7 @@ class PlayerView: UIView {
         let image = UIImage(named: Current.songName)
         
         imageView.image = image?.withAlignmentRectInsets(UIEdgeInsets(top: -70, left: -70, bottom: -70, right: -70))
-        imageView.layer.cornerRadius = 8
+        imageView.layer.cornerRadius = 12
 //        imageView.layer.shadowColor = UIColor.black.cgColor
 //        imageView.layer.shadowOffset = CGSize(width: 10, height: 10)
 //        imageView.layer.shadowOpacity = 0.4
@@ -96,6 +96,7 @@ class PlayerView: UIView {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "backward.fill"), for: .normal)
         button.tintColor = .black
+        button.tag = -1
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -104,6 +105,7 @@ class PlayerView: UIView {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "forward.fill"), for: .normal)
         button.tintColor = .black
+        button.tag = 1
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -120,7 +122,7 @@ class PlayerView: UIView {
         let slider = UISlider()
         slider.minimumValue = 0
         slider.maximumValue = 1
-        slider.value = 0.5
+        slider.value = 0.7
         slider.minimumValueImage = UIImage(systemName: "speaker.fill")
         slider.maximumValueImage = UIImage(systemName: "speaker.3.fill")
         slider.tintColor = .lightGray

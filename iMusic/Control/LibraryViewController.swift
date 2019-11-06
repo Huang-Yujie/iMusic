@@ -83,13 +83,13 @@ extension LibraryRootViewController : UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CustomCollectionCell
-        cell.imageView.image = UIImage(named: "\(songs[indexPath.item]).png")
+        cell.imageView.image = UIImage(named: "\(songs[indexPath.item]).jpg")
         cell.title.text = "\(songs[indexPath.item])"
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        Current.songName = songs[indexPath.item]
+        Current.index = indexPath.item
         self.present(PlayerViewController(), animated: true, completion: .none)
     }
 }

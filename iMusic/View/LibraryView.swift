@@ -33,7 +33,7 @@ class LibraryView: UIView {
         scroll.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         scroll.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         scroll.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
-        scroll.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        scroll.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         backView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         backView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
@@ -48,7 +48,7 @@ class LibraryView: UIView {
         topTable.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         topTable.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 4).isActive = true
         topTable.heightAnchor.constraint(equalToConstant: 240).isActive = true
-
+        
         label.leadingAnchor.constraint(equalTo: topLabel.leadingAnchor).isActive = true
         label.trailingAnchor.constraint(equalTo: topLabel.trailingAnchor).isActive = true
         label.topAnchor.constraint(equalTo: topTable.bottomAnchor).isActive = true
@@ -56,7 +56,7 @@ class LibraryView: UIView {
         collection.leadingAnchor.constraint(equalTo: topLabel.leadingAnchor).isActive = true
         collection.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -18).isActive = true
         collection.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 5).isActive = true
-        collection.heightAnchor.constraint(equalToConstant: 800).isActive = true
+        collection.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
     let backView: UIView = {
@@ -70,7 +70,7 @@ class LibraryView: UIView {
         scroll.translatesAutoresizingMaskIntoConstraints = false
         return scroll
     }()
-        
+    
     let topLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
@@ -112,7 +112,7 @@ class LibraryView: UIView {
         let collection = UICollectionView(frame: CGRect(), collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = .clear
-        collection.isScrollEnabled = false
+//        collection.isScrollEnabled = false
         collection.register(CustomCollectionCell.self, forCellWithReuseIdentifier: "CollectionCell")
         return collection
     }()

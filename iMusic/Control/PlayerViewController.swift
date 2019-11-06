@@ -29,11 +29,13 @@ class PlayerViewController: UIViewController {
             playback.setProgressSlider(playView.progressSlider)
             playView.playPauseButton.addTarget(self, action: #selector(switchPlayPause(_:)), for: .touchUpInside)
             playView.progressSlider.addTarget(self, action: #selector(editProgress), for: .valueChanged)
+            playView.backwardButton.addTarget(self, action: #selector(switchSong(_:)), for: .touchUpInside)
+            playView.forwardButton.addTarget(self, action: #selector(switchSong(_:)), for: .touchUpInside)
             playback.setVolumeSlider(playView.volumeSlider)
         } catch {print("Error")}
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         playback.pause()
     }
@@ -45,5 +47,19 @@ class PlayerViewController: UIViewController {
     @objc func switchPlayPause(_ button: UIButton) {
         playback.switchPlayStatus()
         playback.switchButtonImage(button)
+    }
+    
+    @objc func switchSong(_ button: UIButton) {
+        Current.index += button.tag
+        if Current.index == songs.count
+        {
+            Current.index = 0
+        }
+        if Current.index == -1
+        {
+            Current.index = songs.count - 1
+        }
+        playback.pause()
+        viewDidLoad()
     }
 }

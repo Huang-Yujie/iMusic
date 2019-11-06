@@ -7,8 +7,14 @@
 //
 
 let info = ["播放列表", "艺人", "专辑", "歌曲"]
-let songs = ["Galway Girl", "Photograph"]
+let songs = ["Galway Girl", "Photograph", "YELLOW", "烟袋斜街"]
 
 struct Current {
-    static var songName: String!
+    static var index: Int!
+    static var songName: String! {
+        get
+        {
+            return songs[index]
+        }
+    }
 }

@@ -12,6 +12,8 @@ class CustomCollectionCell: UICollectionViewCell {
     
     var imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.layer.cornerRadius = 8
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()

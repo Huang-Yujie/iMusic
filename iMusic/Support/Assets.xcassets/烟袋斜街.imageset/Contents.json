@@ -2,16 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "baseline_fast_forward_black_18dp.png",
+      "filename" : "烟袋斜街.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "baseline_fast_forward_black_18dp-1.png",
+      "filename" : "烟袋斜街-1.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "烟袋斜街-2.jpg",
       "scale" : "3x"
     }
   ],
