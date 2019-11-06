@@ -24,15 +24,15 @@ class PlayerViewController: UIViewController {
         playView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         playView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
-        do {
-            playback = try Playback(contentsOf: Bundle.main.url(forResource: Current.songName, withExtension: "mp3")!)
-            playback.setProgressSlider(playView.progressSlider)
-            playView.playPauseButton.addTarget(self, action: #selector(switchPlayPause(_:)), for: .touchUpInside)
-            playView.progressSlider.addTarget(self, action: #selector(editProgress), for: .valueChanged)
-            playView.backwardButton.addTarget(self, action: #selector(switchSong(_:)), for: .touchUpInside)
-            playView.forwardButton.addTarget(self, action: #selector(switchSong(_:)), for: .touchUpInside)
-            playback.setVolumeSlider(playView.volumeSlider)
-        } catch {print("Error")}
+        do {playback = try Playback(contentsOf: Bundle.main.url(forResource: Current.songName, withExtension: "mp3")!)} catch {}
+        playback.setProgressSlider(playView.progressSlider)
+        playback.updateDidPlayTimeLabel(playView.timeDidPlayLabel)
+        playback.updateWillPlayTimeLabel(playView.timeWillPlayLabel)
+        playView.playPauseButton.addTarget(self, action: #selector(switchPlayPause(_:)), for: .touchUpInside)
+        playView.progressSlider.addTarget(playback, action: #selector(playback.editProgressSlider), for: .valueChanged)
+        playView.backwardButton.addTarget(self, action: #selector(switchSong(_:)), for: .touchUpInside)
+        playView.forwardButton.addTarget(self, action: #selector(switchSong(_:)), for: .touchUpInside)
+        playback.setVolumeSlider(playView.volumeSlider)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -40,10 +40,6 @@ class PlayerViewController: UIViewController {
         playback.pause()
     }
         
-    @objc func editProgress() {
-        playback.editProgressSlider()
-    }
-    
     @objc func switchPlayPause(_ button: UIButton) {
         playback.switchPlayStatus()
         playback.switchButtonImage(button)

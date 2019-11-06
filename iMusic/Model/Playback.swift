@@ -17,6 +17,8 @@ class Playback: AVAudioPlayer {
     
     override init(contentsOf url: URL) throws {
         try super.init(contentsOf: url)
+//        try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord)
+//        try AVAudioSession.sharedInstance().setActive(true)
         self.prepareToPlay()
         self.play()
         self.numberOfLoops = -1
@@ -38,10 +40,36 @@ class Playback: AVAudioPlayer {
         }
     }
     
-    func editProgressSlider() {
+    @objc func editProgressSlider() {
         self.currentTime = TimeInterval(exactly: progressSlider.value)!
     }
     
+    func updateDidPlayTimeLabel(_ label: UILabel) {
+        Timer.scheduledTimer(timeInterval: 0.0, target: self, selector: #selector(translateDidPlayTimeLabel), userInfo: label, repeats: true)
+    }
+    
+    func updateWillPlayTimeLabel(_ label: UILabel) {
+        Timer.scheduledTimer(timeInterval: 0.0, target: self, selector: #selector(translateWillPlayTimeLabel), userInfo: label, repeats: true)
+    }
+    
+    @objc func translateDidPlayTimeLabel(timer: Timer) {
+        let label = timer.userInfo as! UILabel
+        let time = self.currentTime
+        let timeInt = Int(time)
+        let minute = timeInt / 60
+        let second = timeInt % 60
+        label.text = String(format: "%d:%02d", minute, second)
+    }
+    
+    @objc func translateWillPlayTimeLabel(timer: Timer) {
+        let label = timer.userInfo as! UILabel
+        let time = self.duration - self.currentTime
+        let timeInt = Int(time)
+        let minute = timeInt / 60
+        let second = timeInt % 60
+        label.text = String(format: "-%d:%02d", minute, second)
+    }
+        
     func setVolumeSlider(_ slider: UISlider) {
         volumeSlider = slider
         Timer.scheduledTimer(timeInterval: 0.0, target: self, selector: #selector(updateVolume), userInfo: nil, repeats: true)

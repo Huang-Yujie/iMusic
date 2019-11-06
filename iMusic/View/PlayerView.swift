@@ -23,6 +23,8 @@ class PlayerView: UIView {
         self.addSubview(image)
         self.addSubview(songNameLabel)
         self.addSubview(progressSlider)
+        self.addSubview(timeDidPlayLabel)
+        self.addSubview(timeWillPlayLabel)
         self.addSubview(backwardButton)
         self.addSubview(forwardButton)
         self.addSubview(playPauseButton)
@@ -40,6 +42,14 @@ class PlayerView: UIView {
         progressSlider.leadingAnchor.constraint(equalTo: songNameLabel.leadingAnchor).isActive = true
         progressSlider.trailingAnchor.constraint(equalTo: songNameLabel.trailingAnchor).isActive = true
         progressSlider.topAnchor.constraint(equalTo: songNameLabel.bottomAnchor, constant: 60).isActive = true
+        
+        timeDidPlayLabel.topAnchor.constraint(equalTo: progressSlider.bottomAnchor, constant: 5).isActive = true
+        timeDidPlayLabel.leadingAnchor.constraint(equalTo: progressSlider.leadingAnchor).isActive = true
+        timeDidPlayLabel.trailingAnchor.constraint(equalTo: self.centerXAnchor, constant: -100).isActive = true
+        
+        timeWillPlayLabel.topAnchor.constraint(equalTo: timeDidPlayLabel.topAnchor).isActive = true
+        timeWillPlayLabel.leadingAnchor.constraint(equalTo: self.centerXAnchor, constant: 100).isActive = true
+        timeWillPlayLabel.trailingAnchor.constraint(equalTo: progressSlider.trailingAnchor).isActive = true
         
         playPauseButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         playPauseButton.centerYAnchor.constraint(equalTo: progressSlider.bottomAnchor, constant: 80).isActive = true
@@ -78,7 +88,7 @@ class PlayerView: UIView {
     let songNameLabel: UILabel = {
         let label = UILabel()
         label.text = Current.songName
-        label.font = UIFont(name: "PingFang-SC-Semibold", size: 20)
+        label.font = UIFont(name: "PingFang-SC-Semibold", size: 22)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -87,9 +97,29 @@ class PlayerView: UIView {
         let slider = UISlider()
         slider.tintColor = .lightGray
         slider.thumbTintColor = .lightGray
+        let newImage = imageWithImage(image: slider.thumbImage(for: .normal)!, scaledToSize: CGSize(width: 5, height: 5))
+        slider.setThumbImage(newImage, for: .normal)
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.isContinuous = false
         return slider
+    }()
+    
+    let timeDidPlayLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .lightGray
+        label.font = UIFont(name: "PingFang-SC-Medium", size: 15)
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let timeWillPlayLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .lightGray
+        label.font = UIFont(name: "PingFang-SC-Medium", size: 15)
+        label.textAlignment = .right
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     let backwardButton: UIButton = {
@@ -129,5 +159,4 @@ class PlayerView: UIView {
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
     }()
-    
 }
