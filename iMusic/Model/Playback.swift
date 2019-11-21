@@ -79,6 +79,18 @@ class Playback: AVAudioPlayer {
         self.volume = volumeSlider.value
     }
     
+    func switchSong(_ flag: Int) {
+        Current.index += flag
+        if Current.index == -1
+        {
+            Current.index = songs.count - 1
+        }
+        if Current.index == songs.count
+        {
+            Current.index = 0
+        }
+    }
+    
     func switchPlayStatus() {
         if self.isPlaying
         {
@@ -100,4 +112,10 @@ class Playback: AVAudioPlayer {
             button.setBackgroundImage(UIImage(systemName: "play.fill"), for: .normal)
         }
     }
+    
+    @objc func switchPlayPause(_ button: UIButton) {
+        playback.switchPlayStatus()
+        playback.switchButtonImage(button)
+    }
+
 }

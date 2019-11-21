@@ -97,7 +97,7 @@ class PlayerView: UIView {
         let slider = UISlider()
         slider.tintColor = .lightGray
         slider.thumbTintColor = .lightGray
-        let newImage = imageWithImage(image: slider.thumbImage(for: .normal)!, scaledToSize: CGSize(width: 5, height: 5))
+        let newImage = slider.thumbImage(for: .normal)!.generateNewImage(scaledToSize: CGSize(width: 5, height: 5))
         slider.setThumbImage(newImage, for: .normal)
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.isContinuous = false
@@ -126,7 +126,6 @@ class PlayerView: UIView {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "backward.fill"), for: .normal)
         button.tintColor = .black
-        button.tag = -1
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -135,7 +134,6 @@ class PlayerView: UIView {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "forward.fill"), for: .normal)
         button.tintColor = .black
-        button.tag = 1
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

@@ -7,10 +7,41 @@
 //
 
 import UIKit
+import MediaPlayer
 
 var playback: Playback!
 
 class PlayerViewController: UIViewController {
+    
+    override func loadView() {
+        super.loadView()
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+        let commandCenter = MPRemoteCommandCenter.shared()
+        
+        commandCenter.nextTrackCommand.isEnabled = true
+        commandCenter.nextTrackCommand.addTarget { [unowned self] event in
+            self.nextSong()
+            return .success
+        }
+        
+        commandCenter.previousTrackCommand.isEnabled = true
+        commandCenter.previousTrackCommand.addTarget { [unowned self] event in
+        self.lastSong()
+        return .success
+        }
+        
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.playCommand.addTarget {event in
+            playback.switchPlayStatus()
+        return .success
+        }
+        
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.pauseCommand.addTarget {event in
+            playback.switchPlayStatus()
+        return .success
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +59,10 @@ class PlayerViewController: UIViewController {
         playback.setProgressSlider(playView.progressSlider)
         playback.updateDidPlayTimeLabel(playView.timeDidPlayLabel)
         playback.updateWillPlayTimeLabel(playView.timeWillPlayLabel)
-        playView.playPauseButton.addTarget(self, action: #selector(switchPlayPause(_:)), for: .touchUpInside)
+        playView.playPauseButton.addTarget(playback, action: #selector(playback.switchPlayPause(_:)), for: .touchUpInside)
         playView.progressSlider.addTarget(playback, action: #selector(playback.editProgressSlider), for: .valueChanged)
-        playView.backwardButton.addTarget(self, action: #selector(switchSong(_:)), for: .touchUpInside)
-        playView.forwardButton.addTarget(self, action: #selector(switchSong(_:)), for: .touchUpInside)
+        playView.backwardButton.addTarget(self, action: #selector(lastSong), for: .touchUpInside)
+        playView.forwardButton.addTarget(self, action: #selector(nextSong), for: .touchUpInside)
         playback.setVolumeSlider(playView.volumeSlider)
     }
     
@@ -39,23 +70,16 @@ class PlayerViewController: UIViewController {
         super.viewDidDisappear(true)
         playback.pause()
     }
-        
-    @objc func switchPlayPause(_ button: UIButton) {
-        playback.switchPlayStatus()
-        playback.switchButtonImage(button)
+    
+    @objc func lastSong() {
+        playback.pause()
+        playback.switchSong(-1)
+        viewDidLoad()
     }
     
-    @objc func switchSong(_ button: UIButton) {
-        Current.index += button.tag
-        if Current.index == songs.count
-        {
-            Current.index = 0
-        }
-        if Current.index == -1
-        {
-            Current.index = songs.count - 1
-        }
+    @objc func nextSong() {
         playback.pause()
+        playback.switchSong(1)
         viewDidLoad()
     }
 }
