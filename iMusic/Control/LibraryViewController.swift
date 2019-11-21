@@ -84,7 +84,8 @@ extension LibraryRootViewController : UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CustomCollectionCell
         cell.imageView.image = UIImage(named: songs[indexPath.item].SongName)
-        cell.title.text = songs[indexPath.item].SongName
+        cell.songNameLabel.text = songs[indexPath.item].SongName
+        cell.artistLabel.text = songs[indexPath.item].Artist
         return cell
     }
     

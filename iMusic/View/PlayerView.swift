@@ -22,6 +22,7 @@ class PlayerView: UIView {
     private func setUpViews() {
         self.addSubview(image)
         self.addSubview(songNameLabel)
+        self.addSubview(artistLabel)
         self.addSubview(progressSlider)
         self.addSubview(timeDidPlayLabel)
         self.addSubview(timeWillPlayLabel)
@@ -38,6 +39,10 @@ class PlayerView: UIView {
         songNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
         songNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
         songNameLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 10).isActive = true
+        
+        artistLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
+        artistLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
+        artistLabel.topAnchor.constraint(equalTo: songNameLabel.bottomAnchor).isActive = true
         
         progressSlider.leadingAnchor.constraint(equalTo: songNameLabel.leadingAnchor).isActive = true
         progressSlider.trailingAnchor.constraint(equalTo: songNameLabel.trailingAnchor).isActive = true
@@ -89,6 +94,15 @@ class PlayerView: UIView {
         let label = UILabel()
         label.text = Current.songName
         label.font = UIFont(name: "PingFang-SC-Semibold", size: 22)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let artistLabel: UILabel = {
+        let label = UILabel()
+        label.text = Current.artist
+        label.textColor = .red
+        label.font = UIFont(name: "PingFang-SC-Light", size: 22)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
