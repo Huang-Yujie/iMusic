@@ -7,6 +7,7 @@
 //
 
 import AVFoundation
+import MediaPlayer
 import UIKit
 
 class Playback: AVAudioPlayer {
@@ -17,8 +18,6 @@ class Playback: AVAudioPlayer {
     
     override init(contentsOf url: URL) throws {
         try super.init(contentsOf: url)
-//        try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord)
-//        try AVAudioSession.sharedInstance().setActive(true)
         self.prepareToPlay()
         self.play()
         self.numberOfLoops = -1
@@ -30,18 +29,22 @@ class Playback: AVAudioPlayer {
     
     func setProgressSlider(_ slider: UISlider) {
         progressSlider = slider
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateAudioProgress), userInfo: nil, repeats: true)
         slider.maximumValue = Float(self.duration)
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateAudioProgress), userInfo: nil, repeats: true)
+        slider.addTarget(self, action: #selector(editProgressSlider), for: .valueChanged)
+        slider.addTarget(self, action: #selector(pause), for: .touchDragInside)
     }
     
     @objc func updateAudioProgress() {
         if self.isPlaying {
             progressSlider.setValue(Float(self.currentTime), animated: true)
         }
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = currentTime
     }
     
     @objc func editProgressSlider() {
         self.currentTime = TimeInterval(exactly: progressSlider.value)!
+        play()
     }
     
     func updateDidPlayTimeLabel(_ label: UILabel) {

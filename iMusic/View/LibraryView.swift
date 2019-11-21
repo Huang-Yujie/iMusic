@@ -112,7 +112,6 @@ class LibraryView: UIView {
         let collection = UICollectionView(frame: CGRect(), collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = .clear
-//        collection.isScrollEnabled = false
         collection.register(CustomCollectionCell.self, forCellWithReuseIdentifier: "CollectionCell")
         return collection
     }()
