@@ -91,7 +91,7 @@ class Playback: AVAudioPlayer {
         }
     }
     
-    func switchPlayStatus() {
+    @objc func switchPlayStatus() {
         if self.isPlaying
         {
             self.pause()
@@ -102,7 +102,8 @@ class Playback: AVAudioPlayer {
         }
     }
     
-    func switchButtonImage(_ button: UIButton) {
+    @objc func setButtonImage(timer: Timer) {
+        let button = timer.userInfo as! UIButton
         if self.isPlaying
         {
             button.setBackgroundImage(UIImage(systemName: "pause.fill"), for: .normal)
@@ -112,10 +113,4 @@ class Playback: AVAudioPlayer {
             button.setBackgroundImage(UIImage(systemName: "play.fill"), for: .normal)
         }
     }
-    
-    @objc func switchPlayPause(_ button: UIButton) {
-        playback.switchPlayStatus()
-        playback.switchButtonImage(button)
-    }
-
 }

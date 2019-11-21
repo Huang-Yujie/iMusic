@@ -59,11 +59,12 @@ class PlayerViewController: UIViewController {
         playback.setProgressSlider(playView.progressSlider)
         playback.updateDidPlayTimeLabel(playView.timeDidPlayLabel)
         playback.updateWillPlayTimeLabel(playView.timeWillPlayLabel)
-        playView.playPauseButton.addTarget(playback, action: #selector(playback.switchPlayPause(_:)), for: .touchUpInside)
+        playView.playPauseButton.addTarget(playback, action: #selector(playback.switchPlayStatus), for: .touchUpInside)
         playView.progressSlider.addTarget(playback, action: #selector(playback.editProgressSlider), for: .valueChanged)
         playView.backwardButton.addTarget(self, action: #selector(lastSong), for: .touchUpInside)
         playView.forwardButton.addTarget(self, action: #selector(nextSong), for: .touchUpInside)
         playback.setVolumeSlider(playView.volumeSlider)
+        Timer.scheduledTimer(timeInterval: 0, target: playback!, selector: #selector(playback.setButtonImage(timer:)), userInfo: playView.playPauseButton, repeats: true)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
