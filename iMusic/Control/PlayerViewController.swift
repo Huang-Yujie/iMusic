@@ -11,43 +11,46 @@ import MediaPlayer
 import AVFoundation
 
 var playback: Playback!
+var playerView: PlayerView!
 
 class PlayerViewController: UIViewController {
-    
-    override func loadView() {
-        super.loadView()
         
-        setBackground()
-        setUpCommandCenter()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.modalPresentationStyle = .formSheet
         
-        let playView = PlayerView()
-        view.addSubview(playView)
-        playView.translatesAutoresizingMaskIntoConstraints = false
-        playView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        playView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        playView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        playView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        setBackground()
+        setUpCommandCenter()
         
-        do {playback = try Playback(contentsOf: Bundle.main.url(forResource: Current.songName, withExtension: "mp3")!)} catch {}
-        playback.setProgressSlider(playView.progressSlider)
-        playback.updateDidPlayTimeLabel(playView.timeDidPlayLabel)
-        playback.updateWillPlayTimeLabel(playView.timeWillPlayLabel)
-        playView.playPauseButton.addTarget(playback, action: #selector(playback.switchPlayStatus), for: .touchUpInside)
-        playView.backwardButton.addTarget(self, action: #selector(lastSong), for: .touchUpInside)
-        playView.forwardButton.addTarget(self, action: #selector(nextSong), for: .touchUpInside)
-        playback.setVolumeSlider(playView.volumeSlider)
-        Timer.scheduledTimer(timeInterval: 0, target: playback!, selector: #selector(playback.setButtonImage(timer:)), userInfo: playView.playPauseButton, repeats: true)
-        setUpInfo()
+        updateAll()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         playback.pause()
+    }
+    
+    private func updateAll() {
+        playerView = PlayerView()
+        view.addSubview(playerView)
+        playerView.translatesAutoresizingMaskIntoConstraints = false
+        playerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        playerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        playerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        playerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        do {playback = try Playback(contentsOf: Bundle.main.url(forResource: Current.songName, withExtension: "mp3")!)} catch {}
+        
+        playback.setProgressSlider(playerView.progressSlider)
+        playback.updateDidPlayTimeLabel(playerView.timeDidPlayLabel)
+        playback.updateWillPlayTimeLabel(playerView.timeWillPlayLabel)
+        playerView.playPauseButton.addTarget(playback, action: #selector(playback.switchPlayStatus), for: .touchUpInside)
+        playerView.backwardButton.addTarget(self, action: #selector(lastSong), for: .touchUpInside)
+        playerView.forwardButton.addTarget(self, action: #selector(nextSong), for: .touchUpInside)
+        playback.setVolumeSlider(playerView.volumeSlider)
+        Timer.scheduledTimer(timeInterval: 0, target: playback!, selector: #selector(playback.setButtonImage(timer:)), userInfo: playerView.playPauseButton, repeats: true)
+        setUpInfo()
+
     }
     
     private func setUpCommandCenter() {
@@ -98,12 +101,12 @@ class PlayerViewController: UIViewController {
     @objc func lastSong() {
         playback.pause()
         playback.switchSong(-1)
-        viewDidLoad()
+        updateAll()
     }
     
     @objc func nextSong() {
         playback.pause()
         playback.switchSong(1)
-        viewDidLoad()
+        updateAll()
     }
 }

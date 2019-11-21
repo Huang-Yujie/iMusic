@@ -26,11 +26,13 @@ class Playback: AVAudioPlayer {
     
     var progressSlider: UISlider!
     var volumeSlider: UISlider!
+    var timer: Timer!
     
     func setProgressSlider(_ slider: UISlider) {
         progressSlider = slider
         slider.maximumValue = Float(self.duration)
-        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateAudioProgress), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateAudioProgress), userInfo: nil, repeats: true)
+        
         slider.addTarget(self, action: #selector(editProgressSlider), for: .valueChanged)
         slider.addTarget(self, action: #selector(pause), for: .touchDragInside)
     }
@@ -92,6 +94,7 @@ class Playback: AVAudioPlayer {
         {
             Current.index = 0
         }
+        timer.invalidate()
     }
     
     @objc func switchPlayStatus() {
