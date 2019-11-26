@@ -51,6 +51,8 @@ class PlayerViewController: UIViewController {
         Timer.scheduledTimer(timeInterval: 0, target: playback!, selector: #selector(playback.setButtonImage(timer:)), userInfo: playerView.playPauseButton, repeats: true)
         setUpInfo()
 
+        libraryView.songNameLabel.text = Current.songName
+        libraryView.imageView.image = UIImage(named: Current.songName)
     }
     
     private func setUpCommandCenter() {

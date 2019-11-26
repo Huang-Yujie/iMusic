@@ -85,7 +85,7 @@ class Playback: AVAudioPlayer {
     }
     
     func switchSong(_ flag: Int) {
-        Current.index += flag
+        Current.index! += flag
         if Current.index == -1
         {
             Current.index = songs.count - 1

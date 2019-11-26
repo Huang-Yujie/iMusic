@@ -23,22 +23,21 @@ class LibraryView: UIView {
         
         self.addSubview(backView)
         
-//        scroll.addSubview(backView)
-        
         backView.addSubview(topLabel)
         backView.addSubview(topTable)
         backView.addSubview(label)
         backView.addSubview(collection)
+        backView.addSubview(playBar)
         
-//        scroll.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-//        scroll.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-//        scroll.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
-//        scroll.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        playBar.addSubview(imageView)
+        playBar.addSubview(songNameLabel)
+        playBar.addSubview(playPauseButton)
+        playBar.addSubview(forwardButton)
         
         backView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         backView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         backView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
-        backView.bottomAnchor.constraint(equalTo: collection.bottomAnchor).isActive = true
+        backView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         topLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 18).isActive = true
         topLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
@@ -56,7 +55,30 @@ class LibraryView: UIView {
         collection.leadingAnchor.constraint(equalTo: topLabel.leadingAnchor).isActive = true
         collection.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -18).isActive = true
         collection.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 5).isActive = true
-        collection.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        collection.bottomAnchor.constraint(equalTo: playBar.topAnchor).isActive = true
+        
+        playBar.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        playBar.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        playBar.heightAnchor.constraint(equalToConstant: 65).isActive = true
+        playBar.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
+        imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 18).isActive = true
+        imageView.topAnchor.constraint(equalTo: playBar.topAnchor, constant: 10).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: playBar.bottomAnchor, constant: -10).isActive = true
+        imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
+        
+        songNameLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 20).isActive = true
+        songNameLabel.centerYAnchor.constraint(equalTo: playBar.centerYAnchor).isActive = true
+        
+        forwardButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -18).isActive = true
+        forwardButton.centerYAnchor.constraint(equalTo: playBar.centerYAnchor).isActive = true
+        forwardButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        forwardButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
+        
+        playPauseButton.trailingAnchor.constraint(equalTo: forwardButton.leadingAnchor, constant: -25).isActive = true
+        playPauseButton.centerYAnchor.constraint(equalTo: playBar.centerYAnchor).isActive = true
+        playPauseButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        playPauseButton.widthAnchor.constraint(equalToConstant: 19).isActive = true
     }
     
     let backView: UIView = {
@@ -118,9 +140,46 @@ class LibraryView: UIView {
     
     let playBar: UIView = {
         let bar = UIView()
+        bar.tintColor = .white
         bar.isOpaque = false
-        bar.alpha = 0.5
+        bar.alpha = 0.8
         bar.translatesAutoresizingMaskIntoConstraints = false
         return bar
     }()
+    
+    let imageView: UIImageView = {
+        let imageView = UIImageView()
+        let image = UIImage(named: "nil")
+        imageView.image = image
+        imageView.layer.shadowColor = UIColor.black.cgColor
+        imageView.layer.shadowOffset = CGSize(width: 2, height: 5)
+        imageView.layer.shadowOpacity = 0.2
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    let songNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "未在播放"
+        label.font = UIFont(name: "PingFang-SC-Middle", size: 17)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    let playPauseButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(systemName: "play.fill"), for: .normal)
+        button.tintColor = .black
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    let forwardButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(systemName: "forward.fill"), for: .normal)
+        button.tintColor = .black
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
 }

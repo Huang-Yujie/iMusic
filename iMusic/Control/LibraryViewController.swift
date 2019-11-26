@@ -8,6 +8,8 @@
 
 import UIKit
 
+let libraryView = LibraryView()
+
 class LibraryViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,9 +35,7 @@ class LibraryRootViewController: UIViewController {
         
         self.title = "资料库"
     }
-    
-    let libraryView = LibraryView()
-    
+        
     private func setupViews(){
         
         view.addSubview(libraryView)

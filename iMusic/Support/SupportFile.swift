@@ -11,17 +11,25 @@ let info = ["播放列表", "艺人", "专辑", "歌曲"]
 let songs: Array<(SongName: String, Artist: String)> = [("Galway Girl", "Ed Sheeran"), ("Photograph", "Ed Sheeran"), ("YELLOW", "神山羊"), ("烟袋斜街", "接个吻, 开一枪")]
 
 struct Current {
-    static var index: Int!
+    static var index: Int?
     static var songName: String! {
         get
         {
-            return songs[index].SongName
+            if index == nil
+            {
+                return "未在播放"
+            }
+            return songs[index!].SongName
         }
     }
     static var artist: String! {
         get
         {
-            return songs[index].Artist
+            if index == nil
+            {
+                return ""
+            }
+            return songs[index!].Artist
         }
     }
 }
