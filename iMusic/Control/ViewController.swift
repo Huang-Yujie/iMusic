@@ -12,6 +12,7 @@ class ViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.isTranslucent = true
+        self.tabBar.alpha = 0.8
         self.tabBar.tintColor = .red
         setUpVC()
         self.selectedIndex = 0

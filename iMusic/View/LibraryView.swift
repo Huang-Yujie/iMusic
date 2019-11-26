@@ -21,23 +21,23 @@ class LibraryView: UIView {
     private func setUpSubViews(){
         self.backgroundColor = .white
         
-        self.addSubview(scroll)
+        self.addSubview(backView)
         
-        scroll.addSubview(backView)
+//        scroll.addSubview(backView)
         
         backView.addSubview(topLabel)
         backView.addSubview(topTable)
         backView.addSubview(label)
         backView.addSubview(collection)
         
-        scroll.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        scroll.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        scroll.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
-        scroll.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+//        scroll.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+//        scroll.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+//        scroll.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+//        scroll.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         backView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         backView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        backView.topAnchor.constraint(equalTo: scroll.topAnchor).isActive = true
+        backView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         backView.bottomAnchor.constraint(equalTo: collection.bottomAnchor).isActive = true
         
         topLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 18).isActive = true
@@ -105,8 +105,8 @@ class LibraryView: UIView {
     let collection: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 180, height: 200)
-        layout.minimumLineSpacing = 30
+        layout.itemSize = CGSize(width: 180, height: 235)
+        layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 10
         
         let collection = UICollectionView(frame: CGRect(), collectionViewLayout: layout)
@@ -114,5 +114,13 @@ class LibraryView: UIView {
         collection.backgroundColor = .clear
         collection.register(CustomCollectionCell.self, forCellWithReuseIdentifier: "CollectionCell")
         return collection
+    }()
+    
+    let playBar: UIView = {
+        let bar = UIView()
+        bar.isOpaque = false
+        bar.alpha = 0.5
+        bar.translatesAutoresizingMaskIntoConstraints = false
+        return bar
     }()
 }
