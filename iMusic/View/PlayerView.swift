@@ -20,7 +20,7 @@ class PlayerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     private func setUpViews() {
-        self.addSubview(image)
+        self.addSubview(imageView)
         self.addSubview(songNameLabel)
         self.addSubview(artistLabel)
         self.addSubview(progressSlider)
@@ -31,14 +31,14 @@ class PlayerView: UIView {
         self.addSubview(playPauseButton)
         self.addSubview(volumeSlider)
         
-        image.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        image.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        image.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        image.heightAnchor.constraint(equalTo: image.widthAnchor).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        imageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
         
         songNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
         songNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
-        songNameLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 10).isActive = true
+        songNameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
         
         artistLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
         artistLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
@@ -76,7 +76,7 @@ class PlayerView: UIView {
         volumeSlider.topAnchor.constraint(equalTo: playPauseButton.bottomAnchor, constant: 60).isActive = true
     }
     
-    let image: UIImageView = {
+    let imageView: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(named: Current.songName)
         
