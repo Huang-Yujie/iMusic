@@ -12,7 +12,9 @@ import AVFoundation
 
 var playback: Playback!
 var playerView: PlayerView!
-
+var beginPlay = false
+var timer: Timer!
+var commandCenter: MPRemoteCommandCenter!
 class PlayerViewController: UIViewController {
         
     override func viewDidLoad() {
@@ -20,17 +22,29 @@ class PlayerViewController: UIViewController {
         self.modalPresentationStyle = .formSheet
         
         setBackground()
+        
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+        commandCenter = MPRemoteCommandCenter.shared()
         setUpCommandCenter()
         
         updateAll()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
+    private func reset() {
         playback.pause()
+        timer.invalidate()
+        volumeTimer.invalidate()
+        libraryView.playPauseButton.removeTarget(playback, action: #selector(playback.switchPlayStatus), for: .touchUpInside)
+        libraryView.forwardButton.removeTarget(playback, action: #selector(playback.nextSong), for: .touchUpInside)
+        
+        
     }
     
-    private func updateAll() {
+    @objc private func popPlayerViewController() {
+        libraryRootViewController.present(playerViewController, animated: true, completion: .none)
+    }
+    
+    func updateAll() {
         playerView = PlayerView()
         view.addSubview(playerView)
         playerView.translatesAutoresizingMaskIntoConstraints = false
@@ -39,48 +53,73 @@ class PlayerViewController: UIViewController {
         playerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         playerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
+        if beginPlay {
+            reset()
+        }
+        
         do {playback = try Playback(contentsOf: Bundle.main.url(forResource: Current.songName, withExtension: "mp3")!)} catch {}
+        
+        if !beginPlay {
+//            libraryView.imageView.isUserInteractionEnabled = true
+//            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(popPlayerViewController))
+//            tapGesture.numberOfTouchesRequired = 1
+//            tapGesture.numberOfTapsRequired = 1
+//            libraryView.imageView.addGestureRecognizer(tapGesture)
+
+            beginPlay = true
+        }
         
         playback.setProgressSlider(playerView.progressSlider)
         playback.updateDidPlayTimeLabel(playerView.timeDidPlayLabel)
         playback.updateWillPlayTimeLabel(playerView.timeWillPlayLabel)
         playerView.playPauseButton.addTarget(playback, action: #selector(playback.switchPlayStatus), for: .touchUpInside)
-        playerView.backwardButton.addTarget(self, action: #selector(lastSong), for: .touchUpInside)
-        playerView.forwardButton.addTarget(self, action: #selector(nextSong), for: .touchUpInside)
+        playerView.backwardButton.addTarget(playback, action: #selector(playback.lastSong), for: .touchUpInside)
+        playerView.forwardButton.addTarget(playback, action: #selector(playback.nextSong), for: .touchUpInside)
         playback.setVolumeSlider(playerView.volumeSlider)
         Timer.scheduledTimer(timeInterval: 0, target: playback!, selector: #selector(playback.setButtonImage(timer:)), userInfo: playerView.playPauseButton, repeats: true)
-        setUpInfo()
 
         libraryView.songNameLabel.text = Current.songName
         libraryView.imageView.image = UIImage(named: Current.songName)
+        libraryView.playPauseButton.addTarget(playback, action: #selector(playback.switchPlayStatus), for: .touchUpInside)
+        libraryView.forwardButton.addTarget(playback, action: #selector(playback.nextSong), for: .touchUpInside)
+        timer = Timer.scheduledTimer(timeInterval: 0, target: playback!, selector: #selector(playback.setButtonImage(timer:)), userInfo: libraryView.playPauseButton, repeats: true)
+
+        libraryView.imageView.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(popPlayerViewController))
+        tapGesture.numberOfTouchesRequired = 1
+        tapGesture.numberOfTapsRequired = 1
+        libraryView.imageView.addGestureRecognizer(tapGesture)
+
+        setUpInfo()
+
     }
     
     private func setUpCommandCenter() {
-        UIApplication.shared.beginReceivingRemoteControlEvents()
-        let commandCenter = MPRemoteCommandCenter.shared()
         
         commandCenter.nextTrackCommand.isEnabled = true
-        commandCenter.nextTrackCommand.addTarget { [unowned self] event in
-            self.nextSong()
+        commandCenter.nextTrackCommand.addTarget {event in
+            playback.switchSong(1)
+            self.updateAll()
             return .success
         }
         
         commandCenter.previousTrackCommand.isEnabled = true
-        commandCenter.previousTrackCommand.addTarget { [unowned self] event in
-        self.lastSong()
-        return .success
+        commandCenter.previousTrackCommand.addTarget {event in
+            playback.switchSong(-1)
+            self.updateAll()
+            return .success
         }
         
         commandCenter.playCommand.isEnabled = true
         commandCenter.playCommand.addTarget {event in
-            playback.switchPlayStatus()
-        return .success
+            playback.play()
+            return .success
         }
         
         commandCenter.pauseCommand.isEnabled = true
         commandCenter.pauseCommand.addTarget {event in
-            playback.switchPlayStatus()
-        return .success
+            playback.pause()
+            return .success
         }
     }
     
@@ -98,17 +137,7 @@ class PlayerViewController: UIViewController {
         info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size, requestHandler: { _ in image})
         info[MPMediaItemPropertyPlaybackDuration] = playback.duration
         MPNowPlayingInfoCenter.default().nowPlayingInfo = info
-    }
-    
-    @objc func lastSong() {
-        playback.pause()
-        playback.switchSong(-1)
-        updateAll()
-    }
-    
-    @objc func nextSong() {
-        playback.pause()
-        playback.switchSong(1)
-        updateAll()
+//        print(Current.songName!)
+//        print(Current.artist!)
     }
 }

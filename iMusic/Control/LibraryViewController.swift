@@ -9,6 +9,7 @@
 import UIKit
 
 let libraryView = LibraryView()
+var playerViewController: PlayerViewController!
 
 class LibraryViewController: UINavigationController {
     override func viewDidLoad() {
@@ -91,6 +92,7 @@ extension LibraryRootViewController : UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         Current.index = indexPath.item
-        self.present(PlayerViewController(), animated: true, completion: .none)
+        playerViewController = PlayerViewController()
+        self.present(playerViewController, animated: true, completion: .none)
     }
 }

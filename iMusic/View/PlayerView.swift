@@ -164,7 +164,7 @@ class PlayerView: UIView {
         let slider = UISlider()
         slider.minimumValue = 0
         slider.maximumValue = 1
-        slider.value = 0.7
+        slider.value = volumeValue
         slider.minimumValueImage = UIImage(systemName: "speaker.fill")
         slider.maximumValueImage = UIImage(systemName: "speaker.3.fill")
         slider.tintColor = .lightGray

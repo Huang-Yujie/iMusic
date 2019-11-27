@@ -8,6 +8,8 @@
 
 import UIKit
 
+let libraryRootViewController = LibraryRootViewController()
+
 class ViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +22,7 @@ class ViewController: UITabBarController {
     }
     
     fileprivate func setUpVC(){
-        let libraryViewController = LibraryViewController(rootViewController: LibraryRootViewController())
+        let libraryViewController = LibraryViewController(rootViewController: libraryRootViewController)
         let forYouViewController = ForYouViewController()
         let browseViewController = BrowseViewController()
         let radioViewController = RadioViewController()

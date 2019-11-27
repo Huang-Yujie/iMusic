@@ -10,6 +10,9 @@ import AVFoundation
 import MediaPlayer
 import UIKit
 
+var volumeTimer: Timer!
+var volumeValue: Float = 0.7
+
 class Playback: AVAudioPlayer {
     
     override init(contentsOf url: URL, fileTypeHint utiString: String?) throws {
@@ -25,7 +28,6 @@ class Playback: AVAudioPlayer {
     }
     
     var progressSlider: UISlider!
-    var volumeSlider: UISlider!
     var timer: Timer!
     
     func setProgressSlider(_ slider: UISlider) {
@@ -76,12 +78,14 @@ class Playback: AVAudioPlayer {
     }
         
     func setVolumeSlider(_ slider: UISlider) {
-        volumeSlider = slider
-        Timer.scheduledTimer(timeInterval: 0.0, target: self, selector: #selector(updateVolume), userInfo: nil, repeats: true)
+        let volumeSlider = slider
+        volumeTimer = Timer.scheduledTimer(timeInterval: 0.0, target: self, selector: #selector(updateVolume), userInfo: volumeSlider, repeats: true)
     }
     
-    @objc func updateVolume() {
-        self.volume = volumeSlider.value
+    @objc func updateVolume(timer: Timer) {
+        let volumeSlider = timer.userInfo as! UISlider
+        volumeValue = volumeSlider.value
+        self.volume = volumeValue
     }
     
     func switchSong(_ flag: Int) {
@@ -118,5 +122,15 @@ class Playback: AVAudioPlayer {
         {
             button.setBackgroundImage(UIImage(systemName: "play.fill"), for: .normal)
         }
+    }
+    
+    @objc func lastSong() {
+        playback.switchSong(-1)
+        playerViewController.updateAll()
+    }
+    
+    @objc func nextSong() {
+        playback.switchSong(1)
+        playerViewController.updateAll()
     }
 }

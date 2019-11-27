@@ -72,13 +72,13 @@ class LibraryView: UIView {
         
         forwardButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -18).isActive = true
         forwardButton.centerYAnchor.constraint(equalTo: playBar.centerYAnchor).isActive = true
-        forwardButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        forwardButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
+        forwardButton.heightAnchor.constraint(equalToConstant: 27).isActive = true
+        forwardButton.widthAnchor.constraint(equalToConstant: 34).isActive = true
         
         playPauseButton.trailingAnchor.constraint(equalTo: forwardButton.leadingAnchor, constant: -25).isActive = true
         playPauseButton.centerYAnchor.constraint(equalTo: playBar.centerYAnchor).isActive = true
-        playPauseButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        playPauseButton.widthAnchor.constraint(equalToConstant: 19).isActive = true
+        playPauseButton.heightAnchor.constraint(equalToConstant: 27).isActive = true
+        playPauseButton.widthAnchor.constraint(equalToConstant: 21).isActive = true
     }
     
     let backView: UIView = {
