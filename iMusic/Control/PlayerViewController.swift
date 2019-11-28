@@ -13,7 +13,7 @@ import AVFoundation
 var playback: Playback!
 var playerView: PlayerView!
 var beginPlay = false
-var timer: Timer!
+var buttonTimer: Timer!
 var commandCenter: MPRemoteCommandCenter!
 class PlayerViewController: UIViewController {
         
@@ -32,8 +32,10 @@ class PlayerViewController: UIViewController {
     
     private func reset() {
         playback.pause()
-        timer.invalidate()
+        buttonTimer.invalidate()
         volumeTimer.invalidate()
+        lockTimer.invalidate()
+
         libraryView.playPauseButton.removeTarget(playback, action: #selector(playback.switchPlayStatus), for: .touchUpInside)
         libraryView.forwardButton.removeTarget(playback, action: #selector(playback.nextSong), for: .touchUpInside)
         
@@ -82,7 +84,7 @@ class PlayerViewController: UIViewController {
         libraryView.imageView.image = UIImage(named: Current.songName)
         libraryView.playPauseButton.addTarget(playback, action: #selector(playback.switchPlayStatus), for: .touchUpInside)
         libraryView.forwardButton.addTarget(playback, action: #selector(playback.nextSong), for: .touchUpInside)
-        timer = Timer.scheduledTimer(timeInterval: 0, target: playback!, selector: #selector(playback.setButtonImage(timer:)), userInfo: libraryView.playPauseButton, repeats: true)
+        buttonTimer = Timer.scheduledTimer(timeInterval: 0, target: playback!, selector: #selector(playback.setButtonImage(timer:)), userInfo: libraryView.playPauseButton, repeats: true)
 
         libraryView.imageView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(popPlayerViewController))
