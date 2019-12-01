@@ -12,7 +12,7 @@ import UIKit
 
 var volumeTimer: Timer!
 var lockTimer: Timer!
-var volumeValue: Float = 0.7
+let defaults = UserDefaults.standard
 
 class Playback: AVAudioPlayer {
     
@@ -84,8 +84,8 @@ class Playback: AVAudioPlayer {
     
     @objc func updateVolume(timer: Timer) {
         let volumeSlider = timer.userInfo as! UISlider
-        volumeValue = volumeSlider.value
-        self.volume = volumeValue
+        defaults.set(volumeSlider.value, forKey: "volume")
+        self.volume = volumeSlider.value
     }
     
     func switchSong(_ flag: Int) {

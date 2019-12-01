@@ -50,6 +50,11 @@ class LibraryRootViewController: UIViewController {
         libraryView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         libraryView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
+        if defaults.object(forKey: "index") != nil {
+            Current.index = defaults.integer(forKey: "index")
+            libraryView.songNameLabel.text = Current.songName
+            libraryView.imageView.image = UIImage(named: Current.songName)
+        }
     }
 }
 
