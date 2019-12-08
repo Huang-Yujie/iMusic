@@ -56,6 +56,24 @@ class LibraryRootViewController: UIViewController {
             libraryView.imageView.image = UIImage(named: Current.songName)
         }
     }
+    
+    func updatePlayerBar() {
+        libraryView.songNameLabel.text = Current.songName
+        libraryView.imageView.image = UIImage(named: Current.songName)
+        libraryView.playPauseButton.addTarget(playback, action: #selector(playback.switchPlayStatus), for: .touchUpInside)
+        libraryView.forwardButton.addTarget(playback, action: #selector(playback.nextSong), for: .touchUpInside)
+        buttonTimer = Timer.scheduledTimer(timeInterval: 0, target: playback!, selector: #selector(playback.setButtonImage(timer:)), userInfo: libraryView.playPauseButton, repeats: true)
+
+        libraryView.imageView.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(popPlayerViewController))
+        tapGesture.numberOfTouchesRequired = 1
+        tapGesture.numberOfTapsRequired = 1
+        libraryView.imageView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func popPlayerViewController() {
+        self.present(playerViewController, animated: true, completion: .none)
+    }
 }
 
 // MARK: UITableViewDataSource & UITableViewDelegate

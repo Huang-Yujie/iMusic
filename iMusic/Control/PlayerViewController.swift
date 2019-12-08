@@ -41,11 +41,7 @@ class PlayerViewController: UIViewController {
         
         
     }
-    
-    @objc private func popPlayerViewController() {
-        libraryRootViewController.present(playerViewController, animated: true, completion: .none)
-    }
-    
+        
     func updateAll() {
         playerView = PlayerView()
         view.addSubview(playerView)
@@ -80,17 +76,15 @@ class PlayerViewController: UIViewController {
         playback.setVolumeSlider(playerView.volumeSlider)
         Timer.scheduledTimer(timeInterval: 0, target: playback!, selector: #selector(playback.setButtonImage(timer:)), userInfo: playerView.playPauseButton, repeats: true)
 
-        libraryView.songNameLabel.text = Current.songName
-        libraryView.imageView.image = UIImage(named: Current.songName)
-        libraryView.playPauseButton.addTarget(playback, action: #selector(playback.switchPlayStatus), for: .touchUpInside)
-        libraryView.forwardButton.addTarget(playback, action: #selector(playback.nextSong), for: .touchUpInside)
-        buttonTimer = Timer.scheduledTimer(timeInterval: 0, target: playback!, selector: #selector(playback.setButtonImage(timer:)), userInfo: libraryView.playPauseButton, repeats: true)
-
-        libraryView.imageView.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(popPlayerViewController))
-        tapGesture.numberOfTouchesRequired = 1
-        tapGesture.numberOfTapsRequired = 1
-        libraryView.imageView.addGestureRecognizer(tapGesture)
+//        playerView.imageView.isUserInteractionEnabled = true
+//        let swipeLeftGesture = UISwipeGestureRecognizer(target: playback, action: #selector(playback.nextSong))
+//        swipeLeftGesture.direction = .left
+//        let swipeRightGesture = UISwipeGestureRecognizer(target: playback, action: #selector(playback.lastSong))
+//        swipeRightGesture.direction = .right
+//        playerView.imageView.addGestureRecognizer(swipeLeftGesture)
+//        playerView.imageView.addGestureRecognizer(swipeRightGesture)
+        
+        libraryRootViewController.updatePlayerBar()
 
         setUpInfo()
 
