@@ -30,6 +30,15 @@ class PlayerViewController: UIViewController {
         updateAll()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if willPop {
+            playerView.imageView.frame = CGRect(x: 20, y: 600, width: 30, height: 30)
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+                                playerView.imageView.frame = CGRect(x: 100, y: 100, width: 200, height: 200)
+
+            }, completion: nil)
+        }
+    }
     private func reset() {
         playback.pause()
         buttonTimer.invalidate()

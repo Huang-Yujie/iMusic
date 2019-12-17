@@ -10,6 +10,7 @@ import UIKit
 
 let libraryView = LibraryView()
 var playerViewController: PlayerViewController!
+var willPop = false
 
 class LibraryViewController: UINavigationController {
     override func viewDidLoad() {
@@ -72,7 +73,10 @@ class LibraryRootViewController: UIViewController {
     }
     
     @objc func popPlayerViewController() {
-        self.present(playerViewController, animated: true, completion: .none)
+        willPop = true
+        self.present(playerViewController, animated: true) {
+            willPop = false
+        }
     }
 }
 
